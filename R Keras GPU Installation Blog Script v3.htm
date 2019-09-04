@@ -1,0 +1,3161 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 15">
+<meta name=Originator content="Microsoft Word 15">
+<link rel=File-List
+href="R%20Keras%20GPU%20Installation%20Blog%20Script%20v3_files/filelist.xml">
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>alien</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>Dell</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>2</o:TotalTime>
+  <o:Created>2019-09-04T08:27:00Z</o:Created>
+  <o:LastSaved>2019-09-04T08:27:00Z</o:LastSaved>
+  <o:Pages>15</o:Pages>
+  <o:Words>3405</o:Words>
+  <o:Characters>19415</o:Characters>
+  <o:Lines>161</o:Lines>
+  <o:Paragraphs>45</o:Paragraphs>
+  <o:CharactersWithSpaces>22775</o:CharactersWithSpaces>
+  <o:Version>16.00</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<link rel=themeData
+href="R%20Keras%20GPU%20Installation%20Blog%20Script%20v3_files/themedata.thmx">
+<link rel=colorSchemeMapping
+href="R%20Keras%20GPU%20Installation%20Blog%20Script%20v3_files/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:AutoHyphenation/>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-IN</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:EnableOpenTypeKerning/>
+   <w:DontFlipMirrorIndents/>
+   <w:OverrideTableStyleHps/>
+  </w:Compatibility>
+  <w:DoNotOptimizeForBrowser/>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
+  DefSemiHidden="false" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="377">
+  <w:LsdException Locked="false" Priority="0" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 9"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="header"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footer"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index heading"/>
+  <w:LsdException Locked="false" Priority="35" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of figures"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope return"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="line number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="page number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of authorities"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="macro"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="toa heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 5"/>
+  <w:LsdException Locked="false" Priority="10" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Closing"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Signature"/>
+  <w:LsdException Locked="false" Priority="1" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Message Header"/>
+  <w:LsdException Locked="false" Priority="11" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Salutation"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Date"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Note Heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Block Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="FollowedHyperlink"/>
+  <w:LsdException Locked="false" Priority="22" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Document Map"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Plain Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="E-mail Signature"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Top of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Bottom of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal (Web)"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Acronym"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Cite"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Code"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Definition"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Keyboard"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Preformatted"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Sample"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Typewriter"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Variable"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Table"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation subject"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="No List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Contemporary"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Elegant"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Professional"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Balloon Text"/>
+  <w:LsdException Locked="false" Priority="39" Name="Table Grid"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Theme"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" QFormat="true"
+   Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" QFormat="true"
+   Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" QFormat="true"
+   Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" QFormat="true"
+   Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" QFormat="true"
+   Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" QFormat="true"
+   Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="TOC Heading"/>
+  <w:LsdException Locked="false" Priority="41" Name="Plain Table 1"/>
+  <w:LsdException Locked="false" Priority="42" Name="Plain Table 2"/>
+  <w:LsdException Locked="false" Priority="43" Name="Plain Table 3"/>
+  <w:LsdException Locked="false" Priority="44" Name="Plain Table 4"/>
+  <w:LsdException Locked="false" Priority="45" Name="Plain Table 5"/>
+  <w:LsdException Locked="false" Priority="40" Name="Grid Table Light"/>
+  <w:LsdException Locked="false" Priority="46" Name="Grid Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="Grid Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="Grid Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="46" Name="List Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="List Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="List Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Mention"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hashtag"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Unresolved Mention"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Link"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Link Error"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Mangal;
+	panose-1:0 0 4 0 0 0 0 0 0 0;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:32771 0 0 0 1 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:-536869121 1107305727 33554432 0 415 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-536859905 -1073732485 9 0 511 0;}
+@font-face
+	{font-family:"Liberation Serif";
+	mso-font-alt:"Times New Roman";
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 0 0 0 0;}
+@font-face
+	{font-family:"Noto Sans CJK SC";
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 0 0 0 0;}
+@font-face
+	{font-family:"Lohit Devanagari";
+	mso-font-alt:Calibri;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 0 0 0 0;}
+@font-face
+	{font-family:"Liberation Sans";
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 0 0 0 0;}
+@font-face
+	{font-family:"Liberation Mono";
+	mso-font-alt:Calibri;
+	mso-font-charset:0;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:0 0 0 0 0 0;}
+@font-face
+	{font-family:"DejaVu Sans Mono";
+	mso-font-charset:0;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:0 0 0 0 0 0;}
+@font-face
+	{font-family:"Ubuntu Mono";
+	mso-font-alt:Calibri;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:auto;
+	mso-font-signature:0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;
+	font-size:12.0pt;
+	font-family:"Liberation Serif",serif;
+	mso-fareast-font-family:"Noto Sans CJK SC";
+	mso-bidi-font-family:"Lohit Devanagari";
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;}
+h2
+	{mso-style-priority:9;
+	mso-style-qformat:yes;
+	mso-style-parent:Heading;
+	mso-style-next:"Text body";
+	margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;
+	font-size:18.0pt;
+	font-family:"Liberation Serif",serif;
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;}
+h3
+	{mso-style-priority:9;
+	mso-style-qformat:yes;
+	mso-style-parent:Heading;
+	mso-style-next:"Text body";
+	margin-top:7.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;
+	font-size:14.0pt;
+	font-family:"Liberation Serif",serif;
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;}
+h4
+	{mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-qformat:yes;
+	mso-style-parent:Heading;
+	mso-style-next:"Text body";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;
+	font-size:12.0pt;
+	font-family:"Liberation Serif",serif;
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{mso-style-unhide:no;
+	mso-style-parent:Standard;
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan no-line-numbers;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;
+	font-size:12.0pt;
+	font-family:"Liberation Serif",serif;
+	mso-fareast-font-family:"Noto Sans CJK SC";
+	mso-bidi-font-family:"Lohit Devanagari";
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;
+	font-style:italic;}
+p.MsoList, li.MsoList, div.MsoList
+	{mso-style-unhide:no;
+	mso-style-parent:"Text body";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:7.0pt;
+	margin-left:0in;
+	line-height:115%;
+	mso-pagination:widow-orphan;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;
+	font-size:12.0pt;
+	font-family:"Liberation Serif",serif;
+	mso-fareast-font-family:"Noto Sans CJK SC";
+	mso-bidi-font-family:"Lohit Devanagari";
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;}
+p.MsoSubtitle, li.MsoSubtitle, div.MsoSubtitle
+	{mso-style-priority:11;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Subtitle Char";
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:Mangal;
+	color:#5A5A5A;
+	mso-themecolor:text1;
+	mso-themetint:165;
+	letter-spacing:.75pt;
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;}
+p.Standard, li.Standard, div.Standard
+	{mso-style-name:Standard;
+	mso-style-unhide:no;
+	mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;
+	font-size:12.0pt;
+	font-family:"Liberation Serif",serif;
+	mso-fareast-font-family:"Noto Sans CJK SC";
+	mso-bidi-font-family:"Lohit Devanagari";
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;}
+p.Heading, li.Heading, div.Heading
+	{mso-style-name:Heading;
+	mso-style-unhide:no;
+	mso-style-parent:Standard;
+	mso-style-next:"Text body";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;
+	font-size:14.0pt;
+	font-family:"Liberation Sans",sans-serif;
+	mso-fareast-font-family:"Noto Sans CJK SC";
+	mso-bidi-font-family:"Lohit Devanagari";
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;}
+p.Textbody, li.Textbody, div.Textbody
+	{mso-style-name:"Text body";
+	mso-style-unhide:no;
+	mso-style-parent:Standard;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:7.0pt;
+	margin-left:0in;
+	line-height:115%;
+	mso-pagination:widow-orphan;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;
+	font-size:12.0pt;
+	font-family:"Liberation Serif",serif;
+	mso-fareast-font-family:"Noto Sans CJK SC";
+	mso-bidi-font-family:"Lohit Devanagari";
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;}
+p.Index, li.Index, div.Index
+	{mso-style-name:Index;
+	mso-style-unhide:no;
+	mso-style-parent:Standard;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan no-line-numbers;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;
+	font-size:12.0pt;
+	font-family:"Liberation Serif",serif;
+	mso-fareast-font-family:"Noto Sans CJK SC";
+	mso-bidi-font-family:"Lohit Devanagari";
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;}
+p.PreformattedText, li.PreformattedText, div.PreformattedText
+	{mso-style-name:"Preformatted Text";
+	mso-style-unhide:no;
+	mso-style-parent:Standard;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;
+	font-size:10.0pt;
+	font-family:"Liberation Mono";
+	mso-fareast-font-family:"DejaVu Sans Mono";
+	mso-bidi-font-family:"Liberation Mono";
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;}
+p.TableContents, li.TableContents, div.TableContents
+	{mso-style-name:"Table Contents";
+	mso-style-unhide:no;
+	mso-style-parent:Standard;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan no-line-numbers;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;
+	font-size:12.0pt;
+	font-family:"Liberation Serif",serif;
+	mso-fareast-font-family:"Noto Sans CJK SC";
+	mso-bidi-font-family:"Lohit Devanagari";
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;}
+span.StrongEmphasis
+	{mso-style-name:"Strong Emphasis";
+	mso-style-unhide:no;
+	mso-style-parent:"";
+	font-weight:bold;}
+span.Internetlink
+	{mso-style-name:"Internet link";
+	mso-style-unhide:no;
+	mso-style-parent:"";
+	color:navy;
+	text-decoration:underline;
+	text-underline:single;}
+span.VisitedInternetLink
+	{mso-style-name:"Visited Internet Link";
+	mso-style-unhide:no;
+	mso-style-parent:"";
+	color:maroon;
+	text-decoration:underline;
+	text-underline:single;}
+span.SourceText
+	{mso-style-name:"Source Text";
+	mso-style-unhide:no;
+	mso-style-parent:"";
+	font-family:"Liberation Mono";
+	mso-ascii-font-family:"Liberation Mono";
+	mso-fareast-font-family:"DejaVu Sans Mono";
+	mso-hansi-font-family:"Liberation Mono";
+	mso-bidi-font-family:"Liberation Mono";}
+span.NumberingSymbols
+	{mso-style-name:"Numbering Symbols";
+	mso-style-unhide:no;
+	mso-style-parent:"";}
+span.SubtitleChar
+	{mso-style-name:"Subtitle Char";
+	mso-style-priority:11;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:Subtitle;
+	mso-ansi-font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:Mangal;
+	color:#5A5A5A;
+	mso-themecolor:text1;
+	mso-themetint:165;
+	letter-spacing:.75pt;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:12.0pt;
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Liberation Serif",serif;
+	mso-ascii-font-family:"Liberation Serif";
+	mso-fareast-font-family:"Noto Sans CJK SC";
+	mso-hansi-font-family:"Liberation Serif";
+	mso-bidi-font-family:"Lohit Devanagari";
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;}
+.MsoPapDefault
+	{mso-style-type:export-only;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;}
+ /* Page Definitions */
+ @page
+	{mso-footnote-separator:url("R%20Keras%20GPU%20Installation%20Blog%20Script%20v3_files/header.htm") fs;
+	mso-footnote-continuation-separator:url("R%20Keras%20GPU%20Installation%20Blog%20Script%20v3_files/header.htm") fcs;
+	mso-endnote-separator:url("R%20Keras%20GPU%20Installation%20Blog%20Script%20v3_files/header.htm") es;
+	mso-endnote-continuation-separator:url("R%20Keras%20GPU%20Installation%20Blog%20Script%20v3_files/header.htm") ecs;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:56.7pt 56.7pt 56.7pt 56.7pt;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1709716089;
+	mso-list-template-ids:-313383520;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:35.35pt;
+	text-indent:-14.15pt;}
+@list l0:level2
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:70.7pt;
+	text-indent:-14.15pt;}
+@list l0:level3
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:106.05pt;
+	text-indent:-14.15pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:141.4pt;
+	text-indent:-14.15pt;}
+@list l0:level5
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:176.75pt;
+	text-indent:-14.15pt;}
+@list l0:level6
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:212.1pt;
+	text-indent:-14.15pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:247.45pt;
+	text-indent:-14.15pt;}
+@list l0:level8
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:282.8pt;
+	text-indent:-14.15pt;}
+@list l0:level9
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:318.15pt;
+	text-indent:-14.15pt;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	mso-hyphenate:none;
+	text-autospace:ideograph-other;
+	font-size:12.0pt;
+	font-family:"Liberation Serif",serif;
+	mso-font-kerning:1.5pt;
+	mso-ansi-language:EN-IN;
+	mso-fareast-language:ZH-CN;
+	mso-bidi-language:HI;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1026"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US style='tab-interval:35.45pt'>
+
+<div class=WordSection1>
+
+<p class=MsoSubtitle><span lang=EN-IN>This is a guide to install Keras with
+Tensrflow – GPU version in RStudio on and machine running Ubuntu (which has GPU
+support). In case your machine is non-GPU, the steps are much simpler and can
+be found easily on the net.</span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN>I am putting the key commands required
+for doing this. All commands are mentioned in bold. The commands may vary as
+per hardware and OS configurations and hence must be customized according to
+the software requirements.</span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN>I have found installing software from
+command line of Ubuntu using $ sudo &lt;command&gt; very easy and convenient
+and hence I would recommend the same wherever possible.</span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='font-size:20.0pt'>Installing
+Ubuntu 18.04</span></b><span lang=EN-IN style='font-size:20.0pt;mso-bidi-font-size:
+10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN>In order to install dual boot Ubuntu for
+UEFI machine with pre-existing windows 10, I would recommend following steps
+from Abhsihek Prakash’s blog <a
+href="https://itsfoss.com/install-ubuntu-1404-dual-boot-mode-windows-8-81-uefi/"><span
+style='color:#5A5A5A;mso-themecolor:text1;mso-themetint:165;text-decoration:
+none;text-underline:none'>here</span></a></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN>Well I chose to have dual boot Ubuntu
+18.04 installed on my machine. Please note as on date of writing newer versions
+are available, but I found installing a little older, stabler version would be
+preferable. Plus a lot of help on the internet in form of similar blogs and
+commands would be available for a slightly aged stable version.</span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt'>Tip</span></b><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt'>: <b>Make sure you have enough
+memory in your mount like root(/), swap area and /home.</b> Please keep at
+least 30+ GB in Root(and not just bare minimum 20 GB) if possible as it will
+help in lot of software installations later. Chip away space from windows
+storage if required. Keep at least double the RAM size space in your swap area
+and whatever free space remains in /home.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='font-size:20.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='font-size:20.0pt'>Machine
+Config<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN>Hardware: I have a Dell Alienware machine
+which comes with Windows 10 installed (UEFI mode). It had 32GB Ram, 1 TB Hard
+disk and GTX 1070 GPU NVIDIA graphics card. All the below steps apply for the
+same.</span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN>Once you have Ubuntu installed and all
+checks and password for root set, open the command line terminal using <b>Ctrl
++ Alt + T</b></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN>The config of the OS can be found using
+the lsb command below.</span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN>My machine is as follows:</span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='font-size:12.0pt'>$ lsb_release
+-a</span><span lang=EN-IN><o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>No LSB modules
+are available.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>Distributor ID:
+Ubuntu<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>Description:<span
+style='mso-spacerun:yes'>    </span>Ubuntu 18.04.3 LTS<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>Release:<span
+style='mso-spacerun:yes'>        </span>18.04<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>Codename:<span
+style='mso-spacerun:yes'>       </span>bionic<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='font-size:26.0pt'>Install R<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN>For installing R, I followed the steps on
+Lisa Tagliaferri’s blog <a
+href="https://www.digitalocean.com/community/tutorials/how-to-install-r-on-ubuntu-18-04"><span
+style='color:#5A5A5A;mso-themecolor:text1;mso-themetint:165;text-decoration:
+none;text-underline:none'>here</span></a></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN>I first added the relevant GPG key using
+the command below:</span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys
+E298A3A825C0D65DFD57CBB651716619E084DAB9</span></b></span><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'>Then ran an update
+(always a good choice to keep doing this periodically)<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+sudo apt update</span></b></span><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'>Now install R
+with the command below:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+sudo apt install r-base</span></b></span><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>Go through
+all the prompts for password, agreements etc and say Y</span></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>For a quick
+check run the following command in the terminal:</span></span><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+sudo -i R</span></b></span><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>I got output
+something like this</span></span><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-size:10.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>R
+version 3.6.1 (2019-07-05) -- &quot;Action of the Toes&quot;</span></b></span><span
+lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'>Copyright (C) 2019 The R Foundation
+for Statistical Computing<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'>Platform: x86_64-pc-linux-gnu (64-bit)<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'>R is free software and comes with ABSOLUTELY
+NO WARRANTY.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'>You are welcome to redistribute it
+under certain conditions.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'>Type &amp;apos;license()&amp;apos; or
+&amp;apos;licence()&amp;apos; for distribution details.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'><span style='mso-spacerun:yes'> 
+</span>Natural language support but running in an English locale<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'>R is a collaborative project with many
+contributors.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'>Type
+&amp;apos;contributors()&amp;apos; for more information and<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'>&amp;apos;citation()&amp;apos; on how
+to cite R or R packages in publications.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'>Type &amp;apos;demo()&amp;apos; for
+some demos, &amp;apos;help()&amp;apos; for on-line help, or<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'>&amp;apos;help.start()&amp;apos; for
+an HTML browser interface to help.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'>Type &amp;apos;q()&amp;apos; to quit
+R.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>Now usually
+the installation blogs will advise you to go ahead with installing other
+required packages as well. For us now, we can skip this step for later as our
+core focus is to get the Keras running with Tensorflow GPU.</span></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='font-size:26.0pt'>Install
+Rstudio<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN>I referred the Linux blog <a
+href="https://linuxconfig.org/rstudio-on-ubuntu-18-04-bionic-beaver-linux"><span
+style='color:#5A5A5A;mso-themecolor:text1;mso-themetint:165;text-decoration:
+none;text-underline:none'>here</span></a> with my own tweaks. The steps are
+given below:</span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN>Install the gdebi command from the
+command line first:</span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+sudo apt install gdebi-core</span></b></span><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>Browse to the
+Rstudio package page </span></span><span lang=EN-IN><a
+href="https://www.rstudio.com/products/rstudio/download/#download"><span
+class=SourceText><span style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:
+minor-latin;color:#5A5A5A;mso-themecolor:text1;mso-themetint:165;text-decoration:
+none;text-underline:none'>here</span></span></a></span><span class=SourceText><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:
+minor-latin'>. Choose your version. For me it was </span></span><span
+lang=EN-IN><a
+href="https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.2.1335-amd64.deb"><span
+class=SourceText><span style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:
+minor-latin;color:#5A5A5A;mso-themecolor:text1;mso-themetint:165;text-decoration:
+none;text-underline:none'>RStudio 1.2.1335 - Ubuntu 18/Debian 10 (64-bit)</span></span></a></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>Download the
+package.</span></span><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>You can
+install graphically as well as from command line below. I would prefer the
+command line version but I dont think it should matter much.</span></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>To install
+from command line version, first note the version string of your package. For
+this right click on the download link on the webpage and open it in new window
+(just to copy the URL, you dont have to download it again)</span></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>For me it was
+</span></span><span lang=EN-IN><a
+href="https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.2.1335-amd64.deb"><span
+class=SourceText><span style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:
+minor-latin;color:#5A5A5A;mso-themecolor:text1;mso-themetint:165;text-decoration:
+none;text-underline:none'>https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.2.1335-amd64.deb</span></span></a></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>from which I
+extract my rstudio version string as: rstudio-1.2.1335-amd64.deb</span></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>Now from
+command line terminal go to the folder where it is downloaded</span></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+cd Downloads/</span></b></span><b><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>and run the
+command (with your appropriate Rstudio version)</span></span><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+sudo gdebi rstudio-1.2.1335-amd64.deb</span></b></span><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>Now you can
+open the rstudio from command line itself using the following command</span></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+rstudio</span></b></span><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>In fact, as
+we will see later, it is very helpful to open the rstudio through the command
+line. Why? Because we are going to install Tensorflow through command line
+terminal which is much easier than rstudio. We can then open rstudio through
+command line<span style='mso-spacerun:yes'>  </span>so that it opens in the
+right environment.</span></span><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-size:26.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>To
+disable Nouveau driver (which crashes the screen)</span></b></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>Now this is a
+very important step before we go ahead with NVIDIA driver installation. If you
+skip this step, most likely Ubuntu graphics load screen will crash on next boot
+up and it is a tough job to fix it then. Even before re-booting, you will find
+Rstudio (once you install it) crashing for unknown reasons again and again for
+no apparent reason.</span></span><b><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>Well the
+reason is the in built Nouveau driver, which has to be disabled first.</span></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>The steps to
+do this is what I have picked up (and modified) the steps from Michael
+Beyeler’s blog </span></span><span lang=EN-IN><a
+href="http://www.askaswiss.com/2019/01/how-to-install-cuda-9-cudnn-7-ubuntu-18-04.html"><span
+class=SourceText><span style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:
+minor-latin;color:#5A5A5A;mso-themecolor:text1;mso-themetint:165;text-decoration:
+none;text-underline:none'>here</span></span></a></span><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'>First check the
+installed Nouveau driver using the command below:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+lsmod | grep</span></b></span><b><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'> </span></b><span
+class=SourceText><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin'>nouveau</span></b></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'>To disable the
+driver first ensure you have the Gedit editor. If not you can install the same
+easily from the Ubuntu software center’s repository in a few<span
+style='mso-spacerun:yes'>  </span>easy steps. The icon for the Sofwate center
+is usually on the left hand vertical side of your screen.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>Once you have
+installed Gedit, run the following from your command line terminal. Please
+note, you can open it standalone as well, but for some reason I had trouble
+saving it with root privelleges. Best is to open from command line.</span></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+sudo gedit /etc/modprobe.d/blacklist-nouveau.conf</span></b></span><b><i><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></i></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>Then add the
+following commands in the document:</span></span><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>blacklist
+nouveau</span></b></span><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>options
+nouveau modeset=0</span></b></span><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>Now save
+(Ctrl + S) and close.</span></span><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>Now you have
+to run the following commands from the command line to regenerate the kernel
+initramfs:</span></span><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+sudo update-initramfs -u</span></b></span><b><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>Well I am not
+very sure what this does exactly, but after running the command, the driver
+will get disabled as the kernel takes note of it.</span></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>This should
+be very evident as Rstudio screen will stop crashing at this point. If not,
+reboot the system and you should see this effect.</span></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+reboot</span></b></span><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-size:26.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>To
+install appropriate gcc version</span></b></span><span lang=EN-IN
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt'>I
+followed some steps from the Linux blog </span><span lang=EN-IN><a
+href="https://linuxize.com/post/how-to-install-gcc-compiler-on-ubuntu-18-04/"><span
+style='mso-bidi-font-size:11.0pt;color:#5A5A5A;mso-themecolor:text1;mso-themetint:
+165;text-decoration:none;text-underline:none'>here</span></a></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt'>. Below is a direct reproduction
+of the commands from the blog:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><i><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'>Start by updating
+the packages list:<o:p></o:p></span></i></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><i><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+sudo apt update</span></i></b></span><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><i><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'>Copy<o:p></o:p></span></i></p>
+
+<p class=MsoSubtitle><i><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'>Install the </span></i><span
+class=SourceText><i><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin'>build-essential</span></i></span><i><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'> package by typing:</span></i><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><i><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+sudo apt install build-essential</span></i></b></span><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><i><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></i></p>
+
+<p class=MsoSubtitle><b><i><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'>$ export
+LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64\<o:p></o:p></span></i></b></p>
+
+<p class=MsoSubtitle><b><i><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><span
+style='mso-spacerun:yes'>                        
+</span>${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}<o:p></o:p></span></i></b></p>
+
+<p class=MsoSubtitle><i><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'>The command will
+install a bunch of new packages including </span></i><span class=SourceText><i><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:
+minor-latin'>gcc</span></i></span><i><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'>, </span></i><span
+class=SourceText><i><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin'>g++</span></i></span><i><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'> and </span></i><span class=SourceText><i><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:
+minor-latin'>make</span></i></span><i><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'>.</span></i><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><i><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'>You may also want
+to install the manual pages about using GNU/Linux for development:<o:p></o:p></span></i></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><i><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+sudo apt-get install manpages-dev</span></i></b></span><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><i><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></i></p>
+
+<p class=MsoSubtitle><i><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'>To validate that
+the GCC compiler is successfully installed use the </span></i><span
+class=SourceText><i><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin'>gcc --version</span></i></span><i><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'> command which will print the GCC version:</span></i><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><i><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+gcc --version</span></i></b></span><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><a name=ezoic-pub-ad-placeholder-159></a><i><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>That’s it. GCC is now installed on your system
+and you can start using it.<o:p></o:p></span></i></p>
+
+<p class=MsoSubtitle><span lang=EN-IN><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-size:26.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;
+color:windowtext'>Install the required pre-installation packages</span></b></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>Then I also
+ran a few commands as reccommended on Michael Beyeler’s blog </span></span><span
+lang=EN-IN><a
+href="http://www.askaswiss.com/2019/01/how-to-install-cuda-9-cudnn-7-ubuntu-18-04.html"><span
+class=SourceText><span style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:
+minor-latin;color:#5A5A5A;mso-themecolor:text1;mso-themetint:165;text-decoration:
+none;text-underline:none'>here</span></span></a></span><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><i><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'>According to the
+NVIDIA documentation, this step is no longer strictly required, but it is good
+to have the following packages anyway:<o:p></o:p></span></i></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+sudo</span></b></span><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'> </span></b><span
+class=SourceText><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin'>apt install</span></b></span><b><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'> </span></b><span class=SourceText><b><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:
+minor-latin'>g++ freeglut3-dev build-essential libx11-dev libxmu-dev \</span></b></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'><span
+style='mso-spacerun:yes'>   </span>libxi-dev libglu1-mesa libglu1-mesa-dev</span></b></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-size:26.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;
+color:windowtext'>To install appropriate NVIDIA driver for GPU</span></b></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin'>The next step is to install the
+appropriate NVIDIA driver. This is a very important and the first challenging
+step of the installation. I am showing the steps below for GPU version GTX
+1070. With a little tweaking in the commands, you can easily find the appropriate
+installation for your machine (yeah that’s the way I found it too)</span></span><b><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin'>I referred some steps from this
+Stackoverflow answer </span></span><span lang=EN-IN><a
+href="https://askubuntu.com/questions/1112814/install-driver-for-gtx-1070"><span
+class=SourceText><span style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;
+color:#5A5A5A;mso-themecolor:text1;mso-themetint:165;text-decoration:none;
+text-underline:none'>here</span></span></a></span><b><span lang=EN-IN
+style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin'>To first remove any previous
+NVIDIA installations we run the following command from the command line:</span></span><b><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$ sudo
+apt-get purge nvidia*</span></b></span><span lang=EN-IN style='mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>Then to add the appropriate<b> </b>repository
+to your repo list:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$ sudo
+add-apt-repository ppa:graphics-drivers</span></b></span><span lang=EN-IN
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>Then run an update<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$ sudo
+apt-get update</span></b></span><span lang=EN-IN style='mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>Now check the drivers present for download and
+also which version is reccommended for your particular machine:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$
+ubuntu-drivers devices</span></b></span><span lang=EN-IN style='mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>For some machines following may be the output:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-size:
+10.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>==
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==</span></span><span
+lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-size:
+10.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>modalias :
+pci:v000010DEd00001B81sv00001462sd00003302bc03sc00i00</span></span><span
+lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-size:
+10.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>vendor<span
+style='mso-spacerun:yes'>   </span>: NVIDIA Corporation</span></span><span
+lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-size:
+10.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>model<span
+style='mso-spacerun:yes'>    </span>: GP104 [GeForce GTX 1070]</span></span><span
+lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-size:
+10.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>driver<span
+style='mso-spacerun:yes'>   </span>: nvidia-driver-410 - third-party free</span></span><span
+lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-size:
+10.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>driver<span
+style='mso-spacerun:yes'>   </span>: nvidia-driver-396 - third-party free</span></span><span
+lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-size:
+10.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>driver<span
+style='mso-spacerun:yes'>   </span>: nvidia-driver-415 - third-party free
+recommended</span></span><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-size:
+10.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>driver<span
+style='mso-spacerun:yes'>   </span>: nvidia-driver-390 - third-party free</span></span><span
+lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-size:
+10.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>driver<span
+style='mso-spacerun:yes'>   </span>: xserver-xorg-video-nouveau - distro free
+builtin</span></span><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>Now take the reccommended one and install.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$ sudo
+apt-get install nvidia-driver-415</span></b></span><span lang=EN-IN
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>Now see here the output recommends the driver
+version of 415. On my machine it actually recommended version - 430. So I used
+a different command below<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$ sudo
+apt-get install nvidia-driver-430</span></b></span><span lang=EN-IN
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>See, the point here is use whatever is recommended
+on <b><i>your </i></b>machine.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>Now if you made it to this point without errors,
+a significant step is achieved. It is recommended you reboot your machine at
+this point. In the command terminal just type:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>$ reboot<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:black'>Installing CUDA 10.0<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:black'>If everything loads fine on
+re-boot we are ready to go to next step of installing CUDA. I selected CUDA
+10.0 instead of CUDA 10.1 which is the latest as of writing this. The reason is
+simple – as per my research on the net, it is adviced to use 10.0 as tensorflow
+is sure to be working for this version. Plus command line instructions are
+readily available which I prefer over graphical download and install. It is
+much easier to edit/set environment variables, find, environment variables etc
+working from command line (this can be a major challenge as per my research on
+the net)<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:black'>Just please note, I did install
+CUDA 10.1 first, but finding it non-useful, I removed it and installed CUDA
+10.0. I found the steps useful from the tensorflow blog </span><span
+lang=EN-IN><a href="https://www.tensorflow.org/install/gpu#linux_setup"><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:black;
+text-decoration:none;text-underline:none'>here</span></a></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:black'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN><a
+href="https://www.tensorflow.org/install/gpu#linux_setup"></a></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:black'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN><a
+href="https://www.tensorflow.org/install/gpu#linux_setup"><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:black;
+text-decoration:none;text-underline:none'>https://www.tensorflow.org/install/gpu#linux_setup</span></a></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:black'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'># Add NVIDIA package repositories<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$ wget
+https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.0.130-1_amd64.deb</span></b></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$ sudo dpkg
+-i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb</span></b></span><span lang=EN-IN
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$ sudo
+apt-key adv --fetch-keys $ https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub</span></b></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$ sudo
+apt-get update</span></b></span><span lang=EN-IN style='mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$ wget
+http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb</span></b></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$ sudo apt
+install ./nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb</span></b></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin'>$ sudo
+apt-get update</span></b></span><span lang=EN-IN style='mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin'>Now as per the blow below, it
+reccomends installing the NVIDIA driver now, which can also be done. However
+for us, we have already the done the step</span></span><span lang=EN-IN
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><i><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:#CE181E'>sudo
+apt-get install --no-install-recommends nvidia-driver-30</span></i></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>It is reccommended we reboot at this point<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>$ reboot<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>Once post reboot, check if the GPUs are
+visible using the command below:<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>$ nvidia-smi<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin'>You may get something like this:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>Tue Sep<span
+style='mso-spacerun:yes'>  </span>3 13:05:47 2019<span
+style='mso-spacerun:yes'>       </span><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>+-----------------------------------------------------------------------------+<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>| NVIDIA-SMI
+430.40<span style='mso-spacerun:yes'>       </span>Driver Version: 430.40<span
+style='mso-spacerun:yes'>       </span>CUDA Version: 10.1<span
+style='mso-spacerun:yes'>     </span>|<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>|-------------------------------+----------------------+----------------------+<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>| GPU<span
+style='mso-spacerun:yes'>  </span>Name<span style='mso-spacerun:yes'>       
+</span>Persistence-M| Bus-Id<span style='mso-spacerun:yes'>       
+</span>Disp.A | Volatile Uncorr. ECC |<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>| Fan<span
+style='mso-spacerun:yes'>  </span>Temp<span style='mso-spacerun:yes'> 
+</span>Perf<span style='mso-spacerun:yes'>  </span>Pwr:Usage/Cap|<span
+style='mso-spacerun:yes'>         </span>Memory-Usage | GPU-Util<span
+style='mso-spacerun:yes'>  </span>Compute M. |<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>|===============================+======================+======================|<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>|<span
+style='mso-spacerun:yes'>   </span>0<span style='mso-spacerun:yes'>  </span>GeForce
+GTX 1070<span style='mso-spacerun:yes'>    </span>Off<span
+style='mso-spacerun:yes'>  </span>| 00000000:01:00.0<span
+style='mso-spacerun:yes'>  </span>On |<span
+style='mso-spacerun:yes'>                  </span>N/A |<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>| N/A<span
+style='mso-spacerun:yes'>   </span>53C<span style='mso-spacerun:yes'>   
+</span>P3<span style='mso-spacerun:yes'>    </span>26W /<span
+style='mso-spacerun:yes'>  </span>N/A |<span style='mso-spacerun:yes'>   
+</span>516MiB /<span style='mso-spacerun:yes'>  </span>8117MiB |<span
+style='mso-spacerun:yes'>      </span>0%<span style='mso-spacerun:yes'>     
+</span>Default |<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>+-------------------------------+----------------------+----------------------+<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'><span
+style='mso-spacerun:yes'>                          </span><span
+style='mso-spacerun:yes'>                                                     </span><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>+-----------------------------------------------------------------------------+<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>|
+Processes:<span
+style='mso-spacerun:yes'>                                                      
+</span>GPU Memory |<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>|<span
+style='mso-spacerun:yes'>  </span>GPU<span style='mso-spacerun:yes'>      
+</span>PID<span style='mso-spacerun:yes'>   </span>Type<span
+style='mso-spacerun:yes'>   </span>Process name<span
+style='mso-spacerun:yes'>    </span><span
+style='mso-spacerun:yes'>                         </span>Usage<span
+style='mso-spacerun:yes'>      </span>|<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>|=============================================================================|<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>|<span
+style='mso-spacerun:yes'>    </span>0<span style='mso-spacerun:yes'>     
+</span>1250<span style='mso-spacerun:yes'>      </span>G<span
+style='mso-spacerun:yes'>   </span>/usr/lib/xorg/Xorg<span
+style='mso-spacerun:yes'>                           </span>378MiB |<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>|<span
+style='mso-spacerun:yes'>    </span>0<span style='mso-spacerun:yes'>     
+</span>1424<span style='mso-spacerun:yes'>      </span>G<span
+style='mso-spacerun:yes'>   </span>/usr/bin/gnome-shell<span
+style='mso-spacerun:yes'>            </span><span
+style='mso-spacerun:yes'>             </span>133MiB |<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>|<span
+style='mso-spacerun:yes'>    </span>0<span style='mso-spacerun:yes'>     
+</span>4616<span style='mso-spacerun:yes'>      </span>G<span
+style='mso-spacerun:yes'>   </span>/usr/lib/firefox/firefox<span
+style='mso-spacerun:yes'>                       </span>2MiB |<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt'>+-----------------------------------------------------------------------------+<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'>Don’t worry about the CUDA
+version and no of GPU processes shown. This screen shot has been taken after I
+was finished with full installation. So as long as it shows something like
+this, with at least one GPU process we are good to proceed.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'>Now install the runtime
+libraries (including cuDNN). As per the blog referred, this requires atleast
+4GB. Hence as mentioned in the beginning of this post, please keep as much
+space as you can in root(/) and /home directory.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>$
+sudo apt-get install --no-install-recommends \</span></b></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>   </span>cuda-10-0 \</span></b></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>   </span>libcudnn7=7.6.2.24-1+cuda10.0 \</span></b></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>   </span>libcudnn7-dev=7.6.2.24-1+cuda10.0</span></b></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'>Now Install TensorRT.
+Requires that libcudnn7 is installed above.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>$
+sudo apt-get install -y --no-install-recommends libnvinfer5=5.1.5-1+cuda10.0 \</span></b></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'> </span><span
+style='mso-spacerun:yes'> </span>libnvinfer-dev=5.1.5-1+cuda10.0</span></b></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'>Please note post this, you
+dont have to install cuDNN or cuBlas seperately.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'>It is reccommended we add the
+CUDA library paths to the PATH variable. Use the commands below:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'>Add:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'>$ export
+PATH=$PATH:/usr/local/cuda-10.0/bin<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'>$ export
+CUDADIR=/usr/local/cuda-10.0<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'>Open cuda.conf using the
+gedit command from below<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'>$ sudo gedit </span></b><span
+class=SourceText><b><span lang=EN-IN style='font-family:"Calibri",sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:
+minor-latin;color:windowtext'>/etc/ld.so.conf.d/cuda.conf</span></b></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>Add the following
+line to the document:</span></span><b><i><span lang=EN-IN style='mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p></o:p></span></i></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>/usr/local/cuda/lib64</span></b></span><b><i><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></i></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'>It is recommended we reboot
+at this point<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'>$ reboot<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>Once rebooted,
+please make sure your PATH variable shows all the added paths. Use the command
+below:</span></span><b><i><span lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p></o:p></span></i></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>$
+echo $PATH</span></b></span><b><i><span lang=EN-IN style='font-size:26.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p></o:p></span></i></b></p>
+
+<p class=MsoSubtitle><b><i><span lang=EN-IN style='font-size:26.0pt;color:black'><o:p>&nbsp;</o:p></span></i></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='font-size:26.0pt;color:black'>Install
+Tensorflow – GPU<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:black'>Now there are many versions on the
+net about installing Tensorflow GPU in Keras on Rstudio directly from the
+Rstudio version itself. This is mostly using some variation of
+install_keras(tensorflow = “gpu”). If this works for you, it would be the best.
+Just follow the instructions </span><span lang=EN-IN><a
+href="https://keras.rstudio.com/reference/install_keras.html"><span
+style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:black;
+text-decoration:none;text-underline:none'>here</span></a></span><span
+lang=EN-IN style='mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:black'>.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:black'>However I have found most of the
+instructions producing some or the other error almost every time.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><b><i><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:black'>After many trial and errors, I
+finally decided to check if it can be done from command line in the Python
+environment and then detected in Rstudio later. And it worked!!<o:p></o:p></span></i></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:black'>From the command line, simply give
+the following pip command:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:black'>$ pip install tensorflow-gpu<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:black'>Now here in case you do not have
+pip command installed, the terminal will show you precise instructions to do
+it. Just follow the same and install pip, post which you can run the command
+again.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:black'>Then run the following commands<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:black'>$ install keras<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'>For additional dependencies
+(as we will not be using install_keras() from Rstudio):<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>$
+install h5py pyyaml requests Pillow scipy</span></b></span><b><i><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></i></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>Then open Rstudio
+from command line, as advised earlier in this post:</span></span><b><i><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></i></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>$
+rstudio</span></b></span><b><i><span lang=EN-IN style='font-size:26.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p></o:p></span></i></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>Open an Rscript
+file (.R file) and write the following pieces of code:</span></span><b><i><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></i></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>Install and load
+the “Reticulate” package. Then run py_config() to check the version and
+location of python as detected by your</span></span><b><i><span lang=EN-IN
+style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext'><o:p></o:p></span></i></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+color:black'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+color:black'>library(reticulate)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+color:black'>py_config()<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='font-size:26.0pt;color:black'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+color:black'>I get the output some thing like this:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:black'>python:<span
+style='mso-spacerun:yes'>         </span>/usr/bin/python<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:black'>libpython:<span
+style='mso-spacerun:yes'>     
+</span>/usr/lib/python2.7/config-x86_64-linux-gnu/libpython2.7.so<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:black'>pythonhome:<span
+style='mso-spacerun:yes'>     </span>/usr:/usr<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:black'>version:<span
+style='mso-spacerun:yes'>        </span>2.7.15+ (default, Nov 27 2018,
+23:36:35)<span style='mso-spacerun:yes'>  </span>[GCC 7.3.0]<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:black'>numpy:<span
+style='mso-spacerun:yes'>         
+</span>/home/dtr/.local/lib/python2.7/site-packages/numpy<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:black'>numpy_version:<span
+style='mso-spacerun:yes'>  </span>1.16.5<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:black'>python
+versions found:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:black'><span
+style='mso-spacerun:yes'> </span>/home/dtr/.virtualenvs/r-reticulate/bin/python<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:black'><span
+style='mso-spacerun:yes'> </span>/usr/bin/python<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:black'><span
+style='mso-spacerun:yes'> </span>/usr/bin/python3<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:black'><span
+style='mso-spacerun:yes'> </span>/home/dtr/.virtualenvs/untitled/bin/python<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:black'><span
+style='mso-spacerun:yes'> </span>/home/dtr/.virtualenvs/untitled1/bin/python<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='font-size:26.0pt;color:black'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>The important
+part here is the python version displayed in the first line. For me it is:</span></span><b><i><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></i></b></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>python:<span
+style='mso-spacerun:yes'>         </span>/usr/bin/python</span></span><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>Now run the
+following code:</span></span><span lang=EN-IN style='font-size:26.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>&gt;library(tensorflow)</span></b></span><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>&gt;use_python(&quot;/usr/bin/python&quot;)</span></b></span><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>&gt;Sys.setenv(TENSORFLOW_PYTHON=&quot;/usr/bin/python&quot;)</span></b></span><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>Use the path as
+per your output discussed above.</span></span><span lang=EN-IN
+style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>You can check the
+value of the variable in the list:</span></span><span lang=EN-IN
+style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>&gt;Sys.getenv()</span></b></span><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>Now install the R
+packages for tensorflow and keras</span></span><span lang=EN-IN
+style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>install.packages(“tensorflow”)</span></span><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>install.packages(“keras”)</span></span><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>Now run the
+following code:</span></span><span lang=EN-IN style='font-size:26.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>&gt;library(keras)</span></b></span><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>&gt;library(tensorflow)</span></b></span><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>&gt;tensorflow::tf_config()</span></b></span><span
+lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-family:
+"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>For me the output
+was something linke this:</span></span><span lang=EN-IN style='font-size:26.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;font-family:"Ubuntu Mono";
+color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><a name="rstudio_console_output"></a><span
+class=SourceText><span lang=EN-IN style='font-size:10.0pt;font-family:"Calibri",sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:
+minor-latin;color:windowtext'>TensorFlow v1.14.0 ()</span></span><span
+lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='font-size:
+10.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>Python
+v2.7 (/usr/bin/python)</span></span><span lang=EN-IN style='font-size:9.5pt;
+mso-bidi-font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>Then
+run<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>&gt;
+sessionInfo()<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>For
+me the output was something similar to this:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><a name="rstudio_console_output2"></a><span lang=EN-IN
+style='font-size:12.0pt;font-family:"Ubuntu Mono";color:windowtext;letter-spacing:
+0pt'>R version 3.6.1 (2019-07-05)</span><span lang=EN-IN style='font-size:12.0pt;
+font-family:"Ubuntu Mono";color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";
+color:windowtext;letter-spacing:0pt'>Platform: x86_64-pc-linux-gnu (64-bit)</span><span
+lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";
+color:windowtext;letter-spacing:0pt'>Running under: Ubuntu 18.04.3 LTS</span><span
+lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";
+color:windowtext;letter-spacing:0pt'>Matrix products: default</span><span
+lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";
+color:windowtext;letter-spacing:0pt'>BLAS:<span style='mso-spacerun:yes'>  
+</span>/usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1</span><span lang=EN-IN
+style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";
+color:windowtext;letter-spacing:0pt'>LAPACK:
+/usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1</span><span lang=EN-IN
+style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";
+color:windowtext;letter-spacing:0pt'>locale:</span><span lang=EN-IN
+style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:windowtext;
+letter-spacing:0pt'><span style='mso-spacerun:yes'> </span></span><span
+lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext;
+letter-spacing:0pt'>[1] LC_CTYPE=en_IN.UTF-8<span
+style='mso-spacerun:yes'>       </span>LC_NUMERIC=C<span
+style='mso-spacerun:yes'>               </span>LC_TIME=en_IN.UTF-8<span
+style='mso-spacerun:yes'>        </span>LC_COLLATE=en_IN.UTF-8<span
+style='mso-spacerun:yes'>    </span></span><span lang=EN-IN style='font-size:
+10.0pt;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:windowtext;
+letter-spacing:0pt'><span style='mso-spacerun:yes'> </span></span><span
+lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext;
+letter-spacing:0pt'>[5] LC_MONETARY=en_IN.UTF-8<span
+style='mso-spacerun:yes'>    </span>LC_MESSAGES=en_IN.UTF-8<span
+style='mso-spacerun:yes'>    </span>LC_PAPER=en_IN.UTF-8<span
+style='mso-spacerun:yes'>       </span>LC_NAME=C<span
+style='mso-spacerun:yes'>                 </span></span><span lang=EN-IN
+style='font-size:10.0pt;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:windowtext;
+letter-spacing:0pt'><span style='mso-spacerun:yes'> </span></span><span
+lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext;
+letter-spacing:0pt'>[9] LC_ADDRESS=C<span
+style='mso-spacerun:yes'>               </span>LC_TELEPHONE=C<span
+style='mso-spacerun:yes'>             </span>LC_MEASUREMENT=en_IN.UTF-8
+LC_IDENTIFICATION=C<span style='mso-spacerun:yes'>       </span></span><span
+lang=EN-IN style='font-size:10.0pt;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";
+color:windowtext;letter-spacing:0pt'>attached base packages:</span><span
+lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";
+color:windowtext;letter-spacing:0pt'>[1] stats<span
+style='mso-spacerun:yes'>     </span>graphics<span style='mso-spacerun:yes'> 
+</span>grDevices utils<span style='mso-spacerun:yes'>     </span>datasets<span
+style='mso-spacerun:yes'>  </span>methods<span style='mso-spacerun:yes'>  
+</span>base<span style='mso-spacerun:yes'>     </span></span><span lang=EN-IN
+style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";
+color:windowtext;letter-spacing:0pt'>other attached packages:</span><span
+lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";
+color:windowtext;letter-spacing:0pt'>[1] reticulate_1.13</span><span
+lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";
+color:windowtext;letter-spacing:0pt'>loaded via a namespace (and not attached):</span><span
+lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:windowtext;
+letter-spacing:0pt'><span style='mso-spacerun:yes'> </span></span><span
+lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext;
+letter-spacing:0pt'>[1] compiler_3.6.1<span style='mso-spacerun:yes'>   
+</span>magrittr_1.5<span style='mso-spacerun:yes'>     
+</span>Matrix_1.2-17<span style='mso-spacerun:yes'>     </span>tools_3.6.1<span
+style='mso-spacerun:yes'>       </span>whisker_0.4<span
+style='mso-spacerun:yes'>       </span>base64enc_0.1-3<span
+style='mso-spacerun:yes'>  </span></span><span lang=EN-IN style='font-size:
+10.0pt;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;color:windowtext;
+letter-spacing:0pt'><span style='mso-spacerun:yes'> </span></span><span
+lang=EN-IN style='font-size:10.0pt;font-family:"Ubuntu Mono";color:windowtext;
+letter-spacing:0pt'>[7] Rcpp_1.0.2<span style='mso-spacerun:yes'>       
+</span>tensorflow_1.14.0 grid_3.6.1<span style='mso-spacerun:yes'>       
+</span>jsonlite_1.6<span style='mso-spacerun:yes'>      </span>tfruns_1.4<span
+style='mso-spacerun:yes'>        </span>lattice_0.20-38<span
+style='mso-spacerun:yes'>  </span></span><span lang=EN-IN style='font-size:
+10.0pt;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>If
+you are seeing this(similar) output, you have made it successfully!!<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>Now
+all you have to do is run some sample code from rstudio again and check it. For
+this, close your current rstudio (you dont need to save anything). You can also
+close it from command line by pressing Ctrl + C (as it was opened from command
+line terminal in the first place)<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>Now
+go to command line and re-open rstudio<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>$
+rstudio</span></b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>In
+the editor, type the following code, taken from famous R Keras author </span><span
+lang=EN-IN><a
+href="https://github.com/jjallaire/deep-learning-with-r-notebooks/blob/master/notebooks/3.4-classifying-movie-reviews.Rmd"><span
+style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext;text-decoration:none;text-underline:none'>JJ
+Allaire’s post</span></a></span><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>,
+to test it:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>library(keras)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>imdb
+&lt;- dataset_imdb(num_words = 10000)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>c(c(train_data,
+train_labels), c(test_data, test_labels)) %&lt;-% imdb<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>vectorize_sequences
+&lt;- function(sequences, dimension = 10000) {<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span># Create an all-zero matrix of shape
+(len(sequences), dimension)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span>results &lt;- matrix(0, nrow =
+length(sequences), ncol = dimension)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span>for (i in 1:length(sequences))<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>    </span># Sets specific indices of results[i] to 1s<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>    </span>results[i, sequences[[i]]] &lt;- 1<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span>results<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>}<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>#
+Our vectorized training data<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>x_train
+&lt;- vectorize_sequences(train_data)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>#
+Our vectorized test data<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>x_test
+&lt;- vectorize_sequences(test_data)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>y_train
+&lt;- as.numeric(train_labels)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>y_test
+&lt;- as.numeric(test_labels)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>model
+&lt;- keras_model_sequential() %&gt;%<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span>layer_dense(units = 16, activation =
+&quot;relu&quot;, input_shape = c(10000)) %&gt;%<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span>layer_dense(units = 16, activation = &quot;relu&quot;)
+%&gt;%<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span>layer_dense(units = 1, activation =
+&quot;sigmoid&quot;)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>model
+%&gt;% compile(<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span>optimizer = &quot;rmsprop&quot;,<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span>loss = &quot;binary_crossentropy&quot;,<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span>metrics = c(&quot;accuracy&quot;)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>val_indices
+&lt;- 1:10000<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>x_val
+&lt;- x_train[val_indices,]<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>partial_x_train
+&lt;- x_train[-val_indices,]<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>y_val
+&lt;- y_train[val_indices]<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>partial_y_train
+&lt;- y_train[-val_indices]<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>history
+&lt;- model %&gt;% fit(<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span>partial_x_train,<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span>partial_y_train,<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span>epochs = 20,<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span>batch_size = 512,<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><span
+style='mso-spacerun:yes'>  </span>validation_data = list(x_val, y_val)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>The
+run should start with some system messages displaying the active GPU being
+used. For me, out of many lines of initial messages, the last line, (just
+before it runs) was this:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><a name="rstudio_console_output3"></a><span lang=EN-IN
+style='font-size:10.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext;letter-spacing:0pt'>2019-09-03 14:46:21.008683: I
+tensorflow/core/common_runtime/gpu/gpu_device.cc:1326] Created TensorFlow
+device (/job:localhost/replica:0/task:0/device:GPU:0 with 7254 MB memory) -&gt;
+physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0,
+compute capability: 6.1)</span><span lang=EN-IN style='font-size:10.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext;letter-spacing:0pt'>Epoch
+1/20</span><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:10.0pt;mso-bidi-font-family:
+Calibri;mso-bidi-theme-font:minor-latin;color:windowtext;letter-spacing:0pt'>2019-09-03
+14:46:21.650894: I tensorflow/stream_executor/platform/default/dso_loader.cc:42]
+Successfully opened dynamic library libcublas.so.10.0</span><span lang=EN-IN
+style='font-size:10.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='font-size:26.0pt;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext;
+background:lightgrey;mso-highlight:lightgrey'>Please note here, in the normal
+usage, you just need to load Keras with</span><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>&gt;
+library(keras)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>and
+then start working on your Keras (or tensorflow) code. You dont need to load
+other libraries nor perform checks everytime you run the Rstudio.<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>In
+case you are still not able to get the tensorflow-gpu loaded in the Rstudio
+environment, check all the steps above. Try to reboot the machine and run
+Rstudio above from command line. Then check using the following commands again:<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>&gt;library(reticulate)<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><b><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>&gt;py_config()<o:p></o:p></span></b></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'>and<o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;
+color:windowtext'>&gt;library(keras)</span></b></span><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;
+color:windowtext'>&gt;library(tensorflow)</span></b></span><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><b><span lang=EN-IN
+style='mso-bidi-font-size:11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;
+color:windowtext'>&gt;tensorflow::tf_config()</span></b></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>If
+it still does not work, refer other methods for direct and custom installtion
+available on the net. Of course I may have missed something in this long and
+delicate process. Please let me know through your comments below.</span></span><span
+lang=EN-IN style='mso-bidi-font-size:11.0pt;mso-bidi-font-family:Calibri;
+mso-bidi-theme-font:minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoSubtitle><span class=SourceText><span lang=EN-IN style='mso-bidi-font-size:
+11.0pt;font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-theme-font:minor-latin;color:windowtext'>All
+the best!!</span></span><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p></o:p></span></p>
+
+<p class=MsoSubtitle><span lang=EN-IN style='mso-bidi-font-size:11.0pt;
+mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;color:windowtext'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+</html>
