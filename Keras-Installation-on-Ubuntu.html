@@ -1,0 +1,408 @@
+This is a guide to install Keras with Tensrflow – GPU version in RStudio on and machine running Ubuntu (which has GPU support). In case your machine is non-GPU, the steps are much simpler and can be found easily on the net.
+I am putting the key commands required for doing this. All commands are mentioned in bold. The commands may vary as per hardware and OS configurations and hence must be customized according to the software requirements.
+I have found installing software from command line of Ubuntu using $ sudo <command> very easy and convenient and hence I would recommend the same wherever possible.
+Installing Ubuntu 18.04
+In order to install dual boot Ubuntu for UEFI machine with pre-existing windows 10, I would recommend following steps from Abhsihek Prakash’s blog here
+Well I chose to have dual boot Ubuntu 18.04 installed on my machine. Please note as on date of writing newer versions are available, but I found installing a little older, stabler version would be preferable. Plus a lot of help on the internet in form of similar blogs and commands would be available for a slightly aged stable version.
+Tip: Make sure you have enough memory in your mount like root(/), swap area and /home. Please keep at least 30+ GB in Root(and not just bare minimum 20 GB) if possible as it will help in lot of software installations later. Chip away space from windows storage if required. Keep at least double the RAM size space in your swap area and whatever free space remains in /home.
+
+Machine Config
+Hardware: I have a Dell Alienware machine which comes with Windows 10 installed (UEFI mode). It had 32GB Ram, 1 TB Hard disk and GTX 1070 GPU NVIDIA graphics card. All the below steps apply for the same.
+Once you have Ubuntu installed and all checks and password for root set, open the command line terminal using Ctrl + Alt + T
+The config of the OS can be found using the lsb command below.
+My machine is as follows:
+$ lsb_release -a
+
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 18.04.3 LTS
+Release:        18.04
+Codename:       bionic
+
+Install R
+For installing R, I followed the steps on Lisa Tagliaferri’s blog here
+
+I first added the relevant GPG key using the command below:
+$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+Then ran an update (always a good choice to keep doing this periodically)
+$ sudo apt update
+Now install R with the command below:
+$ sudo apt install r-base
+Go through all the prompts for password, agreements etc and say Y
+For a quick check run the following command in the terminal:
+$ sudo -i R
+I got output something like this
+
+R version 3.6.1 (2019-07-05) -- "Action of the Toes"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type &apos;license()&apos; or &apos;licence()&apos; for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type &apos;contributors()&apos; for more information and
+&apos;citation()&apos; on how to cite R or R packages in publications.
+
+Type &apos;demo()&apos; for some demos, &apos;help()&apos; for on-line help, or
+&apos;help.start()&apos; for an HTML browser interface to help.
+Type &apos;q()&apos; to quit R.
+
+Now usually the installation blogs will advise you to go ahead with installing other required packages as well. For us now, we can skip this step for later as our core focus is to get the Keras running with Tensorflow GPU.
+Install Rstudio
+I referred the Linux blog here with my own tweaks. The steps are given below:
+Install the gdebi command from the command line first:
+$ sudo apt install gdebi-core
+Browse to the Rstudio package page here. Choose your version. For me it was RStudio 1.2.1335 - Ubuntu 18/Debian 10 (64-bit)
+Download the package.
+You can install graphically as well as from command line below. I would prefer the command line version but I dont think it should matter much.
+To install from command line version, first note the version string of your package. For this right click on the download link on the webpage and open it in new window (just to copy the URL, you dont have to download it again)
+For me it was https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.2.1335-amd64.deb
+from which I extract my rstudio version string as: rstudio-1.2.1335-amd64.deb
+Now from command line terminal go to the folder where it is downloaded
+$ cd Downloads/
+and run the command (with your appropriate Rstudio version)
+$ sudo gdebi rstudio-1.2.1335-amd64.deb
+Now you can open the rstudio from command line itself using the following command
+$ rstudio
+In fact, as we will see later, it is very helpful to open the rstudio through the command line. Why? Because we are going to install Tensorflow through command line terminal which is much easier than rstudio. We can then open rstudio through command line  so that it opens in the right environment.
+
+To disable Nouveau driver (which crashes the screen)
+Now this is a very important step before we go ahead with NVIDIA driver installation. If you skip this step, most likely Ubuntu graphics load screen will crash on next boot up and it is a tough job to fix it then. Even before re-booting, you will find Rstudio (once you install it) crashing for unknown reasons again and again for no apparent reason.
+Well the reason is the in built Nouveau driver, which has to be disabled first.
+The steps to do this is what I have picked up (and modified) the steps from Michael Beyeler’s blog here
+First check the installed Nouveau driver using the command below:
+$ lsmod | grep nouveau
+To disable the driver first ensure you have the Gedit editor. If not you can install the same easily from the Ubuntu software center’s repository in a few  easy steps. The icon for the Sofwate center is usually on the left hand vertical side of your screen.
+Once you have installed Gedit, run the following from your command line terminal. Please note, you can open it standalone as well, but for some reason I had trouble saving it with root privelleges. Best is to open from command line.
+$ sudo gedit /etc/modprobe.d/blacklist-nouveau.conf
+Then add the following commands in the document:
+blacklist nouveau
+options nouveau modeset=0
+Now save (Ctrl + S) and close.
+Now you have to run the following commands from the command line to regenerate the kernel initramfs:
+$ sudo update-initramfs -u
+Well I am not very sure what this does exactly, but after running the command, the driver will get disabled as the kernel takes note of it.
+This should be very evident as Rstudio screen will stop crashing at this point. If not, reboot the system and you should see this effect.
+$ reboot
+
+To install appropriate gcc version
+I followed some steps from the Linux blog here. Below is a direct reproduction of the commands from the blog:
+Start by updating the packages list:
+$ sudo apt update
+Copy
+Install the build-essential package by typing:
+$ sudo apt install build-essential
+
+$ export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64\
+                         ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+The command will install a bunch of new packages including gcc, g++ and make.
+You may also want to install the manual pages about using GNU/Linux for development:
+$ sudo apt-get install manpages-dev
+
+To validate that the GCC compiler is successfully installed use the gcc --version command which will print the GCC version:
+$ gcc --version
+That’s it. GCC is now installed on your system and you can start using it.
+
+Install the required pre-installation packages
+
+Then I also ran a few commands as reccommended on Michael Beyeler’s blog here
+According to the NVIDIA documentation, this step is no longer strictly required, but it is good to have the following packages anyway:
+$ sudo apt install g++ freeglut3-dev build-essential libx11-dev libxmu-dev \
+   libxi-dev libglu1-mesa libglu1-mesa-dev
+
+To install appropriate NVIDIA driver for GPU
+The next step is to install the appropriate NVIDIA driver. This is a very important and the first challenging step of the installation. I am showing the steps below for GPU version GTX 1070. With a little tweaking in the commands, you can easily find the appropriate installation for your machine (yeah that’s the way I found it too)
+I referred some steps from this Stackoverflow answer here
+To first remove any previous NVIDIA installations we run the following command from the command line:
+$ sudo apt-get purge nvidia*
+Then to add the appropriate repository to your repo list:
+$ sudo add-apt-repository ppa:graphics-drivers
+Then run an update
+$ sudo apt-get update
+Now check the drivers present for download and also which version is reccommended for your particular machine:
+$ ubuntu-drivers devices
+For some machines following may be the output:
+== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==
+modalias : pci:v000010DEd00001B81sv00001462sd00003302bc03sc00i00
+vendor   : NVIDIA Corporation
+model    : GP104 [GeForce GTX 1070]
+driver   : nvidia-driver-410 - third-party free
+driver   : nvidia-driver-396 - third-party free
+driver   : nvidia-driver-415 - third-party free recommended
+driver   : nvidia-driver-390 - third-party free
+driver   : xserver-xorg-video-nouveau - distro free builtin
+
+Now take the reccommended one and install.
+$ sudo apt-get install nvidia-driver-415
+Now see here the output recommends the driver version of 415. On my machine it actually recommended version - 430. So I used a different command below
+$ sudo apt-get install nvidia-driver-430
+See, the point here is use whatever is recommended on your machine.
+Now if you made it to this point without errors, a significant step is achieved. It is recommended you reboot your machine at this point. In the command terminal just type:
+$ reboot
+
+Installing CUDA 10.0
+If everything loads fine on re-boot we are ready to go to next step of installing CUDA. I selected CUDA 10.0 instead of CUDA 10.1 which is the latest as of writing this. The reason is simple – as per my research on the net, it is adviced to use 10.0 as tensorflow is sure to be working for this version. Plus command line instructions are readily available which I prefer over graphical download and install. It is much easier to edit/set environment variables, find, environment variables etc working from command line (this can be a major challenge as per my research on the net)
+
+Just please note, I did install CUDA 10.1 first, but finding it non-useful, I removed it and installed CUDA 10.0. I found the steps useful from the tensorflow blog here
+
+https://www.tensorflow.org/install/gpu#linux_setup
+
+# Add NVIDIA package repositories
+
+$ wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
+
+$ sudo dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
+
+$ sudo apt-key adv --fetch-keys $ https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+
+$ sudo apt-get update
+
+$ wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
+
+$ sudo apt install ./nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
+
+$ sudo apt-get update
+
+Now as per the blow below, it reccomends installing the NVIDIA driver now, which can also be done. However for us, we have already the done the step
+sudo apt-get install --no-install-recommends nvidia-driver-30
+
+It is reccommended we reboot at this point
+
+$ reboot
+Once post reboot, check if the GPUs are visible using the command below:
+
+$ nvidia-smi
+
+You may get something like this:
+
+Tue Sep  3 13:05:47 2019       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 430.40       Driver Version: 430.40       CUDA Version: 10.1     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  GeForce GTX 1070    Off  | 00000000:01:00.0  On |                  N/A |
+| N/A   53C    P3    26W /  N/A |    516MiB /  8117MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|    0      1250      G   /usr/lib/xorg/Xorg                           378MiB |
+|    0      1424      G   /usr/bin/gnome-shell                         133MiB |
+|    0      4616      G   /usr/lib/firefox/firefox                       2MiB |
++-----------------------------------------------------------------------------+
+Don’t worry about the CUDA version and no of GPU processes shown. This screen shot has been taken after I was finished with full installation. So as long as it shows something like this, with at least one GPU process we are good to proceed.
+
+
+Now install the runtime libraries (including cuDNN). As per the blog referred, this requires atleast 4GB. Hence as mentioned in the beginning of this post, please keep as much space as you can in root(/) and /home directory.
+
+$ sudo apt-get install --no-install-recommends \
+   cuda-10-0 \
+   libcudnn7=7.6.2.24-1+cuda10.0 \
+   libcudnn7-dev=7.6.2.24-1+cuda10.0
+
+Now Install TensorRT. Requires that libcudnn7 is installed above.
+
+$ sudo apt-get install -y --no-install-recommends libnvinfer5=5.1.5-1+cuda10.0 \
+  libnvinfer-dev=5.1.5-1+cuda10.0
+Please note post this, you dont have to install cuDNN or cuBlas seperately.
+
+It is reccommended we add the CUDA library paths to the PATH variable. Use the commands below:
+
+Add:
+$ export PATH=$PATH:/usr/local/cuda-10.0/bin
+$ export CUDADIR=/usr/local/cuda-10.0
+
+Open cuda.conf using the gedit command from below
+
+$ sudo gedit /etc/ld.so.conf.d/cuda.conf
+
+Add the following line to the document:
+/usr/local/cuda/lib64
+
+It is recommended we reboot at this point
+$ reboot
+Once rebooted, please make sure your PATH variable shows all the added paths. Use the command below:
+$ echo $PATH
+
+Install Tensorflow – GPU
+Now there are many versions on the net about installing Tensorflow GPU in Keras on Rstudio directly from the Rstudio version itself. This is mostly using some variation of install_keras(tensorflow = “gpu”). If this works for you, it would be the best. Just follow the instructions here.
+
+However I have found most of the instructions producing some or the other error almost every time.
+After many trial and errors, I finally decided to check if it can be done from command line in the Python environment and then detected in Rstudio later. And it worked!!
+From the command line, simply give the following pip command:
+$ pip install tensorflow-gpu
+Now here in case you do not have pip command installed, the terminal will show you precise instructions to do it. Just follow the same and install pip, post which you can run the command again.
+Then run the following commands
+$ install keras
+For additional dependencies (as we will not be using install_keras() from Rstudio):
+$ install h5py pyyaml requests Pillow scipy
+Then open Rstudio from command line, as advised earlier in this post:
+$ rstudio
+Open an Rscript file (.R file) and write the following pieces of code:
+Install and load the “Reticulate” package. Then run py_config() to check the version and location of python as detected by your
+
+library(reticulate)
+py_config()
+
+I get the output some thing like this:
+
+python:         /usr/bin/python
+libpython:      /usr/lib/python2.7/config-x86_64-linux-gnu/libpython2.7.so
+pythonhome:     /usr:/usr
+version:        2.7.15+ (default, Nov 27 2018, 23:36:35)  [GCC 7.3.0]
+numpy:          /home/dtr/.local/lib/python2.7/site-packages/numpy
+numpy_version:  1.16.5
+
+python versions found:
+ /home/dtr/.virtualenvs/r-reticulate/bin/python
+ /usr/bin/python
+ /usr/bin/python3
+ /home/dtr/.virtualenvs/untitled/bin/python
+ /home/dtr/.virtualenvs/untitled1/bin/python
+
+
+The important part here is the python version displayed in the first line. For me it is:
+python:         /usr/bin/python
+
+
+
+Now run the following code:
+
+>library(tensorflow)
+>use_python("/usr/bin/python")
+>Sys.setenv(TENSORFLOW_PYTHON="/usr/bin/python")
+
+Use the path as per your output discussed above.
+
+You can check the value of the variable in the list:
+
+>Sys.getenv()
+
+Now install the R packages for tensorflow and keras
+
+install.packages(“tensorflow”)
+install.packages(“keras”)
+
+Now run the following code:
+
+>library(keras)
+>library(tensorflow)
+>tensorflow::tf_config()
+
+For me the output was something linke this:
+
+TensorFlow v1.14.0 ()
+Python v2.7 (/usr/bin/python)
+
+Then run
+> sessionInfo()
+For me the output was something similar to this:
+
+R version 3.6.1 (2019-07-05)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 18.04.3 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+
+locale:
+ [1] LC_CTYPE=en_IN.UTF-8       LC_NUMERIC=C               LC_TIME=en_IN.UTF-8        LC_COLLATE=en_IN.UTF-8    
+ [5] LC_MONETARY=en_IN.UTF-8    LC_MESSAGES=en_IN.UTF-8    LC_PAPER=en_IN.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C             LC_MEASUREMENT=en_IN.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] reticulate_1.13
+
+loaded via a namespace (and not attached):
+ [1] compiler_3.6.1    magrittr_1.5      Matrix_1.2-17     tools_3.6.1       whisker_0.4       base64enc_0.1-3  
+ [7] Rcpp_1.0.2        tensorflow_1.14.0 grid_3.6.1        jsonlite_1.6      tfruns_1.4        lattice_0.20-38  
+
+If you are seeing this(similar) output, you have made it successfully!!
+
+Now all you have to do is run some sample code from rstudio again and check it. For this, close your current rstudio (you dont need to save anything). You can also close it from command line by pressing Ctrl + C (as it was opened from command line terminal in the first place)
+Now go to command line and re-open rstudio
+$ rstudio
+In the editor, type the following code, taken from famous R Keras author JJ Allaire’s post, to test it:
+
+
+library(keras)
+imdb <- dataset_imdb(num_words = 10000)
+
+c(c(train_data, train_labels), c(test_data, test_labels)) %<-% imdb
+
+vectorize_sequences <- function(sequences, dimension = 10000) {
+  # Create an all-zero matrix of shape (len(sequences), dimension)
+  results <- matrix(0, nrow = length(sequences), ncol = dimension)
+  for (i in 1:length(sequences))
+    # Sets specific indices of results[i] to 1s
+    results[i, sequences[[i]]] <- 1
+  results
+}
+# Our vectorized training data
+x_train <- vectorize_sequences(train_data)
+# Our vectorized test data
+x_test <- vectorize_sequences(test_data)
+
+y_train <- as.numeric(train_labels)
+y_test <- as.numeric(test_labels)
+
+model <- keras_model_sequential() %>%
+  layer_dense(units = 16, activation = "relu", input_shape = c(10000)) %>%
+  layer_dense(units = 16, activation = "relu") %>%
+  layer_dense(units = 1, activation = "sigmoid")
+
+model %>% compile(
+  optimizer = "rmsprop",
+  loss = "binary_crossentropy",
+  metrics = c("accuracy")
+)
+
+val_indices <- 1:10000
+x_val <- x_train[val_indices,]
+partial_x_train <- x_train[-val_indices,]
+y_val <- y_train[val_indices]
+partial_y_train <- y_train[-val_indices]
+
+history <- model %>% fit(
+  partial_x_train,
+  partial_y_train,
+  epochs = 20,
+  batch_size = 512,
+  validation_data = list(x_val, y_val)
+)
+
+The run should start with some system messages displaying the active GPU being used. For me, out of many lines of initial messages, the last line, (just before it runs) was this:
+
+2019-09-03 14:46:21.008683: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1326] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7254 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+Epoch 1/20
+2019-09-03 14:46:21.650894: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcublas.so.10.0
+
+Please note here, in the normal usage, you just need to load Keras with
+
+> library(keras)
+
+and then start working on your Keras (or tensorflow) code. You dont need to load other libraries nor perform checks everytime you run the Rstudio.
+In case you are still not able to get the tensorflow-gpu loaded in the Rstudio environment, check all the steps above. Try to reboot the machine and run Rstudio above from command line. Then check using the following commands again:
+>library(reticulate)
+>py_config()
+and
+>library(keras)
+>library(tensorflow)
+>tensorflow::tf_config()
+
+If it still does not work, refer other methods for direct and custom installtion available on the net. Of course I may have missed something in this long and delicate process. Please let me know through your comments below.
+
+All the best!!
+
