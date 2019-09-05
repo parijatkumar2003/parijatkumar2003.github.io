@@ -252,10 +252,238 @@ Type &amp;apos;contributors()&amp;apos; for more information and
 Type &amp;apos;demo()&amp;apos; for some demos, &amp;apos;help()&amp;apos; for on-line help, or &amp;apos;help.start()&amp;apos; 
 for an HTML browser interface to help.  
 Type &amp;apos;q()&amp;apos; to quit R.</code></pre>
+<p>Now usually the installation blogs will advise you to go ahead with installing other required packages as well. For us now, we can skip this step for later as our core focus is to get the Keras running with Tensorflow GPU.</p>
+</div>
+<div id="install-rstudio" class="section level3">
+<h3>Install Rstudio</h3>
+<p>I referred the Linux blog here with my own tweaks. The steps are given below:</p>
+<p>Install the gdebi command from the command line first:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBzdWRvIGFwdCBpbnN0YWxsIGdkZWJpLWNvcmVcbmBgYCJ9 -->
+<pre class="r"><code>$ sudo apt install gdebi-core</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Browse to the Rstudio package page here. Choose your version.<br />
+For me it was <code>RStudio 1.2.1335 - Ubuntu 18/Debian 10 (64-bit)</code><br />
+Download the package.<br />
+You can install graphically as well as from command line below. I would prefer the command line version but I dont think it should matter much.</p>
+<p>To install from command line version, first note the version string of your package. For this right click on the download link on the webpage and open it in new window (just to copy the URL, you dont have to download it again)<br />
+For me it was <code>https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.2.1335-amd64.deb</code> from which I extract my rstudio version string as: <code>rstudio-1.2.1335-amd64.deb</code><br />
+Now from command line terminal go to the folder where it is downloaded</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBjZCBEb3dubG9hZHMvXG5gYGAifQ== -->
+<pre class="r"><code>$ cd Downloads/</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>and run the command (with your appropriate Rstudio version)</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBzdWRvIGdkZWJpIHJzdHVkaW8tMS4yLjEzMzUtYW1kNjQuZGViXG5gYGAifQ== -->
+<pre class="r"><code>$ sudo gdebi rstudio-1.2.1335-amd64.deb</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now you can open the rstudio from command line itself using the following command</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCByc3R1ZGlvXG5gYGAifQ== -->
+<pre class="r"><code>$ rstudio</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>In fact, as we will see later, it is very helpful to open the rstudio through the command line. Why? Because we are going to install Tensorflow through command line terminal which is much easier than rstudio.<br />
+We can then open rstudio through command line so that it opens in the right environment.</p>
+</div>
+<div id="to-disable-nouveau-driver-which-crashes-the-screen" class="section level3">
+<h3>To disable Nouveau driver (which crashes the screen)</h3>
+<p>Now this is a very important step before we go ahead with NVIDIA driver installation. If you skip this step, most likely Ubuntu graphics load screen will crash on next boot up and it is a tough job to fix it then. Even before re-booting, you will find Rstudio (once you install it) crashing for unknown reasons again and again for no apparent reason.</p>
+<p>Well the reason is the in built Nouveau driver, which has to be disabled first.</p>
+<p>The steps to do this is what I have picked up (and modified) the steps from Michael Beyeler’s blog <a href="http://www.askaswiss.com/2019/01/how-to-install-cuda-9-cudnn-7-ubuntu-18-04.html">here</a></p>
+<p>First check the installed Nouveau driver using the command below:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBsc21vZCB8IGdyZXAgbm91dmVhdVxuYGBgIn0= -->
+<pre class="r"><code>$ lsmod | grep nouveau</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>To disable the driver first ensure you have the Gedit editor. If not you can install the same easily from the Ubuntu software center’s repository in a few easy steps. The icon for the Sofwate center is usually on the left hand vertical side of your screen.</p>
+<p>Once you have installed Gedit, run the following from your command line terminal.<br />
+Please note, you can open it standalone as well, but for some reason I had trouble saving it with root privelleges. Best is to open from command line.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBzdWRvIGdlZGl0IC9ldGMvbW9kcHJvYmUuZC9ibGFja2xpc3Qtbm91dmVhdS5jb25mXG5gYGAifQ== -->
+<pre class="r"><code>$ sudo gedit /etc/modprobe.d/blacklist-nouveau.conf</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Then add the following commands in the document:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmxhY2tsaXN0IG5vdXZlYXVcbm9wdGlvbnMgbm91dmVhdSBtb2Rlc2V0PTBcbmBgYCJ9 -->
+<pre class="r"><code>blacklist nouveau
+options nouveau modeset=0</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now save <strong>(Ctrl + S)</strong> and close.</p>
+<p>Now you have to run the following commands from the command line to regenerate the kernel initramfs:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBzdWRvIHVwZGF0ZS1pbml0cmFtZnMgLXVcbmBgYCJ9 -->
+<pre class="r"><code>$ sudo update-initramfs -u</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Well I am not very sure what this does exactly, but after running the command, the driver will get disabled as the kernel takes note of it.</p>
+<p>This should be very evident as Rstudio screen will stop crashing at this point. If not, reboot the system and you should see this effect.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCByZWJvb3RcbmBgYCJ9 -->
+<pre class="r"><code>$ reboot</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="to-install-appropriate-gcc-version" class="section level3">
+<h3>To install appropriate gcc version</h3>
+<p>I followed some steps from the Linux blog here.</p>
+<p>Below is a direct reproduction of the commands from the blog:</p>
+<p>Start by updating the packages list:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBzdWRvIGFwdCB1cGRhdGVcbmBgYCJ9 -->
+<pre class="r"><code>$ sudo apt update</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Copy<br />
+Install the build-essential package by typing:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBzdWRvIGFwdCBpbnN0YWxsIGJ1aWxkLWVzc2VudGlhbCAgXG4gIFxuJCBleHBvcnQgTERfTElCUkFSWV9QQVRIPS91c3IvbG9jYWwvY3VkYS0xMC4xL2xpYjY0XFxcbiAgICAgICAgICAgICAgICAgICAgICAgICAke0xEX0xJQlJBUllfUEFUSDorOiR7TERfTElCUkFSWV9QQVRIfX1cbmBgYCJ9 -->
+<pre class="r"><code>$ sudo apt install build-essential  
+  
+$ export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64\
+                         ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The command will install a bunch of new packages including gcc, g++ and make.</p>
+<p>You may also want to install the manual pages about using GNU/Linux for development:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBzdWRvIGFwdC1nZXQgaW5zdGFsbCBtYW5wYWdlcy1kZXZcbmBgYCJ9 -->
+<pre class="r"><code>$ sudo apt-get install manpages-dev</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>To validate that the GCC compiler is successfully installed use the gcc –version command which will print the GCC version:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBnY2MgLS12ZXJzaW9uXG5gYGAifQ== -->
+<pre class="r"><code>$ gcc --version</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>That’s it. GCC is now installed on your system and you can start using it.</p>
+</div>
+<div id="install-the-required-pre-installation-packages" class="section level3">
+<h3>Install the required pre-installation packages</h3>
+<p>Then I also ran a few commandas recommended on Michael Beyeler`s blog <a href="http://www.askaswiss.com/2019/01/how-to-install-cuda-9-cudnn-7-ubuntu-18-04.html">here</a></p>
+<p>According to the NVIDIA documentation, this step is no longer strictly required, but it is good to have the following packages anyway:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBzdWRvIGFwdCBpbnN0YWxsIGcrKyBmcmVlZ2x1dDMtZGV2IGJ1aWxkLWVzc2VudGlhbCBsaWJ4MTEtZGV2IGxpYnhtdS1kZXYgXFxcbiAgIGxpYnhpLWRldiBsaWJnbHUxLW1lc2EgbGliZ2x1MS1tZXNhLWRldlxuYGBgIn0= -->
+<pre class="r"><code>$ sudo apt install g++ freeglut3-dev build-essential libx11-dev libxmu-dev \
+   libxi-dev libglu1-mesa libglu1-mesa-dev</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="to-install-appropriate-nvidia-driver-for-gpu" class="section level3">
+<h3>To install appropriate NVIDIA driver for GPU</h3>
+<p>The next step is to install the appropriate NVIDIA driver. This is a very important and the first challenging step of the installation.<br />
+I am showing the steps below for GPU version GTX 1070.<br />
+With a little tweaking in the commands, you can easily find the appropriate installation for your machine (yeah that’s the way I found it too)</p>
+<p>I referred some steps from this stackoverflow answer <a href="https://askubuntu.com/questions/1112814/install-driver-for-gtx-1070">here</a><br />
+To first remove any previous NVIDIA installations we run the following command from the command line:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBzdWRvIGFwdC1nZXQgcHVyZ2UgbnZpZGlhKlxuYGBgIn0= -->
+<pre class="r"><code>$ sudo apt-get purge nvidia*</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Then to add the appropriate repository to your repo list:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBzdWRvIGFkZC1hcHQtcmVwb3NpdG9yeSBwcGE6Z3JhcGhpY3MtZHJpdmVyc1xuYGBgIn0= -->
+<pre class="r"><code>$ sudo add-apt-repository ppa:graphics-drivers</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Then run an update</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBzdWRvIGFwdC1nZXQgdXBkYXRlXG5gYGAifQ== -->
+<pre class="r"><code>$ sudo apt-get update</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now check the drivers present for download and also which version is reccommended for your particular machine:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCB1YnVudHUtZHJpdmVycyBkZXZpY2VzXG5gYGAifQ== -->
+<pre class="r"><code>$ ubuntu-drivers devices</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>For some machines following may be the output:</p>
+<pre><code>== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==  
+modalias : pci:v000010DEd00001B81sv00001462sd00003302bc03sc00i00  
+vendor   : NVIDIA Corporation  
+model    : GP104 [GeForce GTX 1070]  
+driver   : nvidia-driver-410 - third-party free  
+driver   : nvidia-driver-396 - third-party free  
+driver   : nvidia-driver-415 - third-party free recommended  
+driver   : nvidia-driver-390 - third-party free  
+driver   : xserver-xorg-video-nouveau - distro free builtin  </code></pre>
+<p>Now take the reccommended one and install.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBzdWRvIGFwdC1nZXQgaW5zdGFsbCBudmlkaWEtZHJpdmVyLTQxNVxuYGBgIn0= -->
+<pre class="r"><code>$ sudo apt-get install nvidia-driver-415</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now see here the output recommends the driver version of <code>415</code>.<br />
+On my machine it actually recommended version <code>- 430</code>. So I used a different command below</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCBzdWRvIGFwdC1nZXQgaW5zdGFsbCBudmlkaWEtZHJpdmVyLTQzMFxuYGBgIn0= -->
+<pre class="r"><code>$ sudo apt-get install nvidia-driver-430</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>See, the point here is use whatever is recommended on your machine.Now if you made it to this point without errors, a significant step is achieved.<br />
+It is recommended you reboot your machine at this point.<br />
+In the command terminal just type:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuJCByZWJvb3RcbmBgYCJ9 -->
+<pre class="r"><code>$ reboot</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgS2VyYXMgR1BVIEluc3RhbGxhdGlvbiINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNClRoaXMgaXMgYSBndWlkZSB0byBpbnN0YWxsIEtlcmFzIHdpdGggVGVuc3JmbG93IC0gR1BVIHZlcnNpb24gaW4gUlN0dWRpbyBvbiBhbmQgbWFjaGluZSBydW5uaW5nIFVidW50dSAod2hpY2ggaGFzIEdQVSBzdXBwb3J0KS4gSW4gY2FzZSB5b3VyIG1hY2hpbmUgaXMgbm9uLUdQVSwgdGhlIHN0ZXBzIGFyZSBtdWNoIHNpbXBsZXIgYW5kIGNhbiBiZSBmb3VuZCBlYXNpbHkgb24gdGhlIG5ldC4NCkkgYW0gcHV0dGluZyB0aGUga2V5IGNvbW1hbmRzIHJlcXVpcmVkIGZvciBkb2luZyB0aGlzLiBBbGwgY29tbWFuZHMgYXJlIG1lbnRpb25lZCBpbiBib2xkLiBUaGUgY29tbWFuZHMgbWF5IHZhcnkgYXMgcGVyIGhhcmR3YXJlIGFuZCBPUyBjb25maWd1cmF0aW9ucyBhbmQgaGVuY2UgbXVzdCBiZSBjdXN0b21pemVkIGFjY29yZGluZyB0byB0aGUgc29mdHdhcmUgcmVxdWlyZW1lbnRzLg0KSSBoYXZlIGZvdW5kIGluc3RhbGxpbmcgc29mdHdhcmUgZnJvbSBjb21tYW5kIGxpbmUgb2YgVWJ1bnR1IHVzaW5nIA0KYCQgc3VkbyA8Y29tbWFuZD5gdmVyeSBlYXN5IGFuZCBjb252ZW5pZW50IGFuZCBoZW5jZSBJIHdvdWxkIHJlY29tbWVuZCB0aGUgc2FtZSB3aGVyZXZlciBwb3NzaWJsZS4NCg0KIyMjSW5zdGFsbGluZyBVYnVudHUgMTguMDQNCkluIG9yZGVyIHRvIGluc3RhbGwgZHVhbCBib290IFVidW50dSBmb3IgVUVGSSBtYWNoaW5lIHdpdGggcHJlLWV4c2l0aW5nIHdpbmRvd3MgMTAsSSB3b3VsZCByZWNvbW1tZW5kIGZvbGxvd2luZyBzdGVwcyBmcm9tIEFiaGlzaGVrIFByYWthc2hgcyBibG9nIFtoZXJlXShodHRwczovL2l0c2Zvc3MuY29tL2luc3RhbGwtdWJ1bnR1LTE0MDQtZHVhbC1ib290LW1vZGUtd2luZG93cy04LTgxLXVlZmkvKS4NCldlbGwgSSBjaG9zZSB0byBoYXZlIGR1YWwgYm9vdCBVYnVudHUgMTguMDQgaW5zdGFsbGVkIG9uIG15IG1hY2hpbmUuIFBsZWFzZSBub3RlIGFzIG9uIGRhdGUgb2Ygd3JpdGluZyBuZXdlciB2ZXJzaW9ucyBhcmUgYXZhaWxhYmxlLCBidXQgSSBmb3VuZCBpbnN0YWxsaW5nIGEgbGl0dGxlIG9sZGVyLCBzdGFibGVyIHZlcnNpb24gd291bGQgYmUgcHJlZmVyYWJsZS4gUGx1cyBhIGxvdCBvZiBoZWxwIG9uIHRoZSBpbnRlcm5ldCBpbiBmb3JtIG9mIHNpbWlsYXIgYmxvZ3MgYW5kIGNvbW1hbmRzIHdvdWxkIGJlIGF2YWlsYWJsZSBmb3IgYSBzbGlnaHRseSBhZ2VkIHN0YWJsZSB2ZXJzaW9uLiAgICANCioqVGlwOiBNYWtlIHN1cmUgeW91IGhhdmUgZW5vdWdoIG1lbW9yeSBpbiB5b3VyIG1vdW50IGxpa2Ugcm9vdCgvKSwgc3dhcCBhcmVhIGFuZCAvaG9tZSoqLiANClBsZWFzZSBrZWVwIGF0IGxlYXN0IDMwKyBHQiBpbiBSb290KGFuZCBub3QganVzdCBiYXJlIG1pbmltdW0gMjAgR0IpIGlmIHBvc3NpYmxlIGFzIGl0IHdpbGwgaGVscCBpbiBsb3Qgb2Ygc29mdHdhcmUgaW5zdGFsbGF0aW9ucyBsYXRlci4gQ2hpcCBhd2F5IHNwYWNlIGZyb20gd2luZG93cyBzdG9yYWdlIGlmIHJlcXVpcmVkLiBLZWVwIGF0IGxlYXN0IGRvdWJsZSB0aGUgUkFNIHNpemUgc3BhY2UgaW4geW91ciBzd2FwIGFyZWEgYW5kIHdoYXRldmVyIGZyZWUgc3BhY2UgcmVtYWlucyBpbiAvaG9tZS4NCg0KDQoNCiMjI01hY2hpbmUgQ29uZmlnDQpIYXJkd2FyZTogSSBoYXZlIGEgRGVsbCBBbGllbndhcmUgbWFjaGluZSB3aGljaCBjb21lcyB3aXRoIFdpbmRvd3MgMTAgaW5zdGFsbGVkIChVRUZJIG1vZGUpLiBJdCBoYWQgMzJHQiBSYW0sIDEgVEIgSGFyZCBkaXNrIGFuZCBHVFggMTA3MCBHUFUgTlZJRElBIGdyYXBoaWNzIGNhcmQuIEFsbCB0aGUgYmVsb3cgc3RlcHMgYXBwbHkgZm9yIHRoZSBzYW1lLg0KT25jZSB5b3UgaGF2ZSBVYnVudHUgaW5zdGFsbGVkIGFuZCBhbGwgY2hlY2tzIGFuZCBwYXNzd29yZCBmb3Igcm9vdCBzZXQsIG9wZW4gdGhlIGNvbW1hbmQgbGluZSB0ZXJtaW5hbCB1c2luZyAqKkN0cmwgKyBBbHQgKyBUKioNClRoZSBjb25maWcgb2YgdGhlIE9TIGNhbiBiZSBmb3VuZCB1c2luZyB0aGUgbHNiIGNvbW1hbmQgYmVsb3cuDQpgYGB7cn0NCiQgbHNiX3JlbGVhc2UgLWENCmBgYA0KDQpNeSBtYWNoaW5lIGlzIGFzIGZvbGxvd3M6ICANCiAgDQpObyBMU0IgbW9kdWxlcyBhcmUgYXZhaWxhYmxlLiAgDQogIA0KRGlzdHJpYnV0b3IgSUQ6IFVidW50dSAgDQogIA0KRGVzY3JpcHRpb246ICAgIFVidW50dSAxOC4wNC4zIExUUyAgDQogIA0KUmVsZWFzZTogICAgICAgIDE4LjA0ICANCiAgDQpDb2RlbmFtZTogICAgICAgYmlvbmljICANCiAgDQojIyNJbnN0YWxsIFINCkZvciBpbnN0YWxsaW5nIFIsIEkgZm9sbG93ZWQgdGhlIHN0ZXBzIG9uIExpc2EgVGFnbGlhZmVycmlgcyBibG9nIFtoZXJlXShodHRwczovL3d3dy5kaWdpdGFsb2NlYW4uY29tL2NvbW11bml0eS90dXRvcmlhbHMvaG93LXRvLWluc3RhbGwtci1vbi11YnVudHUtMTgtMDQpLiAgDQogIA0KSSBmaXJzdCBhZGRlZCB0aGUgcmVsZXZhbnQgR1BHIGtleSB1c2luZyB0aGUgY29tbWFuZCBiZWxvdzoNCmBgYHtyfQ0KJCBzdWRvIGFwdC1rZXkgYWR2IC0ta2V5c2VydmVyIGtleXNlcnZlci51YnVudHUuY29tIC0tcmVjdi1rZXlzIEUyOThBM0E4MjVDMEQ2NURGRDU3Q0JCNjUxNzE2NjE5RTA4NERBQjkNCmBgYA0KDQpUaGVuIHJhbiBhbiB1cGRhdGUgKGFsd2F5cyBhIGdvb2QgY2hvaWNlIHRvIGtlZXAgZG9pbmcgdGhpcyBwZXJpb2RpY2FsbHkpICANCmBgYHtyfQ0KJCBzdWRvIGFwdCB1cGRhdGUNCmBgYA0KTm93IGluc3RhbGwgUiB3aXRoIHRoZSBjb21tYW5kIGJlbG93OiAgDQpgYGB7cn0NCiQgc3VkbyBhcHQgaW5zdGFsbCByLWJhc2UNCmBgYA0KR28gdGhyb3VnaCBhbGwgdGhlIHByb21wdHMgZm9yIHBhc3N3b3JkLCBhZ3JlZW1lbnRzIGV0YyBhbmQgc2F5IFkNCkZvciBhIHF1aWNrIGNoZWNrIHJ1biB0aGUgZm9sbG93aW5nIGNvbW1hbmQgaW4gdGhlIHRlcm1pbmFsOiAgDQpgYGB7cn0NCiQgc3VkbyAtaSBSDQpgYGANCg0KSSBnb3Qgb3V0cHV0IHNvbWV0aGluZyBsaWtlIHRoaXMgIA0KYGBgICANClIgdmVyc2lvbiAzLjYuMSAoMjAxOS0wNy0wNSkgLS0gIkFjdGlvbiBvZiB0aGUgVG9lcyIgICAgDQpDb3B5cmlnaHQgKEMpIDIwMTkgVGhlIFIgRm91bmRhdGlvbiBmb3IgU3RhdGlzdGljYWwgQ29tcHV0aW5nIA0KUGxhdGZvcm06IHg4Nl82NC1wYy1saW51eC1nbnUgKDY0LWJpdCkgIA0KDQpSIGlzIGZyZWUgc29mdHdhcmUgYW5kIGNvbWVzIHdpdGggQUJTT0xVVEVMWSBOTyBXQVJSQU5UWS4gIA0KWW91IGFyZSB3ZWxjb21lIHRvIHJlZGlzdHJpYnV0ZSBpdCB1bmRlciBjZXJ0YWluIGNvbmRpdGlvbnMuICANClR5cGUgJmFwb3M7bGljZW5zZSgpJmFwb3M7IG9yICZhcG9zO2xpY2VuY2UoKSZhcG9zOyBmb3IgZGlzdHJpYnV0aW9uIGRldGFpbHMuICAgIA0KICANCk5hdHVyYWwgbGFuZ3VhZ2Ugc3VwcG9ydCBidXQgcnVubmluZyBpbiBhbiBFbmdsaXNoIGxvY2FsZQ0KICANClIgaXMgYSBjb2xsYWJvcmF0aXZlIHByb2plY3Qgd2l0aCBtYW55IGNvbnRyaWJ1dG9ycy4gDQpUeXBlICZhcG9zO2NvbnRyaWJ1dG9ycygpJmFwb3M7IGZvciBtb3JlIGluZm9ybWF0aW9uIGFuZCAgDQomYXBvcztjaXRhdGlvbigpJmFwb3M7IG9uIGhvdyB0byBjaXRlIFIgb3IgUiBwYWNrYWdlcyBpbiBwdWJsaWNhdGlvbnMuICANCiAgDQpUeXBlICZhcG9zO2RlbW8oKSZhcG9zOyBmb3Igc29tZSBkZW1vcywgJmFwb3M7aGVscCgpJmFwb3M7IGZvciBvbi1saW5lIGhlbHAsIG9yICZhcG9zO2hlbHAuc3RhcnQoKSZhcG9zOyANCmZvciBhbiBIVE1MIGJyb3dzZXIgaW50ZXJmYWNlIHRvIGhlbHAuICANClR5cGUgJmFwb3M7cSgpJmFwb3M7IHRvIHF1aXQgUi4NCmBgYA0KDQoNCiAgDQoNCg0KDQogIA0KICA=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgS2VyYXMgR1BVIEluc3RhbGxhdGlvbiINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNClRoaXMgaXMgYSBndWlkZSB0byBpbnN0YWxsIEtlcmFzIHdpdGggVGVuc3JmbG93IC0gR1BVIHZlcnNpb24gaW4gUlN0dWRpbyBvbiBhbmQgbWFjaGluZSBydW5uaW5nIFVidW50dSAod2hpY2ggaGFzIEdQVSBzdXBwb3J0KS4gSW4gY2FzZSB5b3VyIG1hY2hpbmUgaXMgbm9uLUdQVSwgdGhlIHN0ZXBzIGFyZSBtdWNoIHNpbXBsZXIgYW5kIGNhbiBiZSBmb3VuZCBlYXNpbHkgb24gdGhlIG5ldC4NCkkgYW0gcHV0dGluZyB0aGUga2V5IGNvbW1hbmRzIHJlcXVpcmVkIGZvciBkb2luZyB0aGlzLiBBbGwgY29tbWFuZHMgYXJlIG1lbnRpb25lZCBpbiBib2xkLiBUaGUgY29tbWFuZHMgbWF5IHZhcnkgYXMgcGVyIGhhcmR3YXJlIGFuZCBPUyBjb25maWd1cmF0aW9ucyBhbmQgaGVuY2UgbXVzdCBiZSBjdXN0b21pemVkIGFjY29yZGluZyB0byB0aGUgc29mdHdhcmUgcmVxdWlyZW1lbnRzLg0KSSBoYXZlIGZvdW5kIGluc3RhbGxpbmcgc29mdHdhcmUgZnJvbSBjb21tYW5kIGxpbmUgb2YgVWJ1bnR1IHVzaW5nIA0KYCQgc3VkbyA8Y29tbWFuZD5gdmVyeSBlYXN5IGFuZCBjb252ZW5pZW50IGFuZCBoZW5jZSBJIHdvdWxkIHJlY29tbWVuZCB0aGUgc2FtZSB3aGVyZXZlciBwb3NzaWJsZS4NCg0KIyMjSW5zdGFsbGluZyBVYnVudHUgMTguMDQNCkluIG9yZGVyIHRvIGluc3RhbGwgZHVhbCBib290IFVidW50dSBmb3IgVUVGSSBtYWNoaW5lIHdpdGggcHJlLWV4c2l0aW5nIHdpbmRvd3MgMTAsSSB3b3VsZCByZWNvbW1tZW5kIGZvbGxvd2luZyBzdGVwcyBmcm9tIEFiaGlzaGVrIFByYWthc2hgcyBibG9nIFtoZXJlXShodHRwczovL2l0c2Zvc3MuY29tL2luc3RhbGwtdWJ1bnR1LTE0MDQtZHVhbC1ib290LW1vZGUtd2luZG93cy04LTgxLXVlZmkvKS4NCldlbGwgSSBjaG9zZSB0byBoYXZlIGR1YWwgYm9vdCBVYnVudHUgMTguMDQgaW5zdGFsbGVkIG9uIG15IG1hY2hpbmUuIFBsZWFzZSBub3RlIGFzIG9uIGRhdGUgb2Ygd3JpdGluZyBuZXdlciB2ZXJzaW9ucyBhcmUgYXZhaWxhYmxlLCBidXQgSSBmb3VuZCBpbnN0YWxsaW5nIGEgbGl0dGxlIG9sZGVyLCBzdGFibGVyIHZlcnNpb24gd291bGQgYmUgcHJlZmVyYWJsZS4gUGx1cyBhIGxvdCBvZiBoZWxwIG9uIHRoZSBpbnRlcm5ldCBpbiBmb3JtIG9mIHNpbWlsYXIgYmxvZ3MgYW5kIGNvbW1hbmRzIHdvdWxkIGJlIGF2YWlsYWJsZSBmb3IgYSBzbGlnaHRseSBhZ2VkIHN0YWJsZSB2ZXJzaW9uLiAgICANCioqVGlwOiBNYWtlIHN1cmUgeW91IGhhdmUgZW5vdWdoIG1lbW9yeSBpbiB5b3VyIG1vdW50IGxpa2Ugcm9vdCgvKSwgc3dhcCBhcmVhIGFuZCAvaG9tZSoqLiANClBsZWFzZSBrZWVwIGF0IGxlYXN0IDMwKyBHQiBpbiBSb290KGFuZCBub3QganVzdCBiYXJlIG1pbmltdW0gMjAgR0IpIGlmIHBvc3NpYmxlIGFzIGl0IHdpbGwgaGVscCBpbiBsb3Qgb2Ygc29mdHdhcmUgaW5zdGFsbGF0aW9ucyBsYXRlci4gQ2hpcCBhd2F5IHNwYWNlIGZyb20gd2luZG93cyBzdG9yYWdlIGlmIHJlcXVpcmVkLiBLZWVwIGF0IGxlYXN0IGRvdWJsZSB0aGUgUkFNIHNpemUgc3BhY2UgaW4geW91ciBzd2FwIGFyZWEgYW5kIHdoYXRldmVyIGZyZWUgc3BhY2UgcmVtYWlucyBpbiAvaG9tZS4NCg0KDQoNCiMjI01hY2hpbmUgQ29uZmlnDQpIYXJkd2FyZTogSSBoYXZlIGEgRGVsbCBBbGllbndhcmUgbWFjaGluZSB3aGljaCBjb21lcyB3aXRoIFdpbmRvd3MgMTAgaW5zdGFsbGVkIChVRUZJIG1vZGUpLiBJdCBoYWQgMzJHQiBSYW0sIDEgVEIgSGFyZCBkaXNrIGFuZCBHVFggMTA3MCBHUFUgTlZJRElBIGdyYXBoaWNzIGNhcmQuIEFsbCB0aGUgYmVsb3cgc3RlcHMgYXBwbHkgZm9yIHRoZSBzYW1lLg0KT25jZSB5b3UgaGF2ZSBVYnVudHUgaW5zdGFsbGVkIGFuZCBhbGwgY2hlY2tzIGFuZCBwYXNzd29yZCBmb3Igcm9vdCBzZXQsIG9wZW4gdGhlIGNvbW1hbmQgbGluZSB0ZXJtaW5hbCB1c2luZyAqKkN0cmwgKyBBbHQgKyBUKioNClRoZSBjb25maWcgb2YgdGhlIE9TIGNhbiBiZSBmb3VuZCB1c2luZyB0aGUgbHNiIGNvbW1hbmQgYmVsb3cuDQpgYGB7cn0NCiQgbHNiX3JlbGVhc2UgLWENCmBgYA0KDQpNeSBtYWNoaW5lIGlzIGFzIGZvbGxvd3M6ICANCiAgDQpObyBMU0IgbW9kdWxlcyBhcmUgYXZhaWxhYmxlLiAgDQogIA0KRGlzdHJpYnV0b3IgSUQ6IFVidW50dSAgDQogIA0KRGVzY3JpcHRpb246ICAgIFVidW50dSAxOC4wNC4zIExUUyAgDQogIA0KUmVsZWFzZTogICAgICAgIDE4LjA0ICANCiAgDQpDb2RlbmFtZTogICAgICAgYmlvbmljICANCiAgDQojIyNJbnN0YWxsIFINCkZvciBpbnN0YWxsaW5nIFIsIEkgZm9sbG93ZWQgdGhlIHN0ZXBzIG9uIExpc2EgVGFnbGlhZmVycmlgcyBibG9nIFtoZXJlXShodHRwczovL3d3dy5kaWdpdGFsb2NlYW4uY29tL2NvbW11bml0eS90dXRvcmlhbHMvaG93LXRvLWluc3RhbGwtci1vbi11YnVudHUtMTgtMDQpLiAgDQogIA0KSSBmaXJzdCBhZGRlZCB0aGUgcmVsZXZhbnQgR1BHIGtleSB1c2luZyB0aGUgY29tbWFuZCBiZWxvdzoNCmBgYHtyfQ0KJCBzdWRvIGFwdC1rZXkgYWR2IC0ta2V5c2VydmVyIGtleXNlcnZlci51YnVudHUuY29tIC0tcmVjdi1rZXlzIEUyOThBM0E4MjVDMEQ2NURGRDU3Q0JCNjUxNzE2NjE5RTA4NERBQjkNCmBgYCANCg0KVGhlbiByYW4gYW4gdXBkYXRlIChhbHdheXMgYSBnb29kIGNob2ljZSB0byBrZWVwIGRvaW5nIHRoaXMgcGVyaW9kaWNhbGx5KQ0KYGBge3J9DQokIHN1ZG8gYXB0IHVwZGF0ZQ0KYGBgICANCiAgDQpOb3cgaW5zdGFsbCBSIHdpdGggdGhlIGNvbW1hbmQgYmVsb3c6DQpgYGB7cn0NCiQgc3VkbyBhcHQgaW5zdGFsbCByLWJhc2UNCmBgYCAgDQpHbyB0aHJvdWdoIGFsbCB0aGUgcHJvbXB0cyBmb3IgcGFzc3dvcmQsIGFncmVlbWVudHMgZXRjIGFuZCBzYXkgWQ0KRm9yIGEgcXVpY2sgY2hlY2sgcnVuIHRoZSBmb2xsb3dpbmcgY29tbWFuZCBpbiB0aGUgdGVybWluYWw6ICANCmBgYHtyfQ0KJCBzdWRvIC1pIFINCmBgYCAgDQogIA0KSSBnb3Qgb3V0cHV0IHNvbWV0aGluZyBsaWtlIHRoaXMgIA0KDQpgYGAgIA0KUiB2ZXJzaW9uIDMuNi4xICgyMDE5LTA3LTA1KSAtLSAiQWN0aW9uIG9mIHRoZSBUb2VzIiAgICANCkNvcHlyaWdodCAoQykgMjAxOSBUaGUgUiBGb3VuZGF0aW9uIGZvciBTdGF0aXN0aWNhbCBDb21wdXRpbmcgDQpQbGF0Zm9ybTogeDg2XzY0LXBjLWxpbnV4LWdudSAoNjQtYml0KSAgDQoNClIgaXMgZnJlZSBzb2Z0d2FyZSBhbmQgY29tZXMgd2l0aCBBQlNPTFVURUxZIE5PIFdBUlJBTlRZLiAgDQpZb3UgYXJlIHdlbGNvbWUgdG8gcmVkaXN0cmlidXRlIGl0IHVuZGVyIGNlcnRhaW4gY29uZGl0aW9ucy4gIA0KVHlwZSAmYXBvcztsaWNlbnNlKCkmYXBvczsgb3IgJmFwb3M7bGljZW5jZSgpJmFwb3M7IGZvciBkaXN0cmlidXRpb24gZGV0YWlscy4gICAgDQogIA0KTmF0dXJhbCBsYW5ndWFnZSBzdXBwb3J0IGJ1dCBydW5uaW5nIGluIGFuIEVuZ2xpc2ggbG9jYWxlDQogIA0KUiBpcyBhIGNvbGxhYm9yYXRpdmUgcHJvamVjdCB3aXRoIG1hbnkgY29udHJpYnV0b3JzLiANClR5cGUgJmFwb3M7Y29udHJpYnV0b3JzKCkmYXBvczsgZm9yIG1vcmUgaW5mb3JtYXRpb24gYW5kICANCiZhcG9zO2NpdGF0aW9uKCkmYXBvczsgb24gaG93IHRvIGNpdGUgUiBvciBSIHBhY2thZ2VzIGluIHB1YmxpY2F0aW9ucy4gIA0KICANClR5cGUgJmFwb3M7ZGVtbygpJmFwb3M7IGZvciBzb21lIGRlbW9zLCAmYXBvcztoZWxwKCkmYXBvczsgZm9yIG9uLWxpbmUgaGVscCwgb3IgJmFwb3M7aGVscC5zdGFydCgpJmFwb3M7IA0KZm9yIGFuIEhUTUwgYnJvd3NlciBpbnRlcmZhY2UgdG8gaGVscC4gIA0KVHlwZSAmYXBvcztxKCkmYXBvczsgdG8gcXVpdCBSLg0KYGBgICANCiAgDQpOb3cgdXN1YWxseSB0aGUgaW5zdGFsbGF0aW9uIGJsb2dzIHdpbGwgYWR2aXNlIHlvdSB0byBnbyBhaGVhZCB3aXRoIGluc3RhbGxpbmcgb3RoZXIgcmVxdWlyZWQgcGFja2FnZXMgYXMgd2VsbC4gRm9yIHVzIG5vdywgd2UgY2FuIHNraXAgdGhpcyBzdGVwIGZvciBsYXRlciBhcyBvdXIgY29yZSBmb2N1cyBpcyB0byBnZXQgdGhlIEtlcmFzIHJ1bm5pbmcgd2l0aCBUZW5zb3JmbG93IEdQVS4NCiAgDQojIyNJbnN0YWxsIFJzdHVkaW8gIA0KICANCiAgDQpJIHJlZmVycmVkIHRoZSBMaW51eCBibG9nIGhlcmUgd2l0aCBteSBvd24gdHdlYWtzLiBUaGUgc3RlcHMgYXJlIGdpdmVuIGJlbG93OiAgDQogIA0KSW5zdGFsbCB0aGUgZ2RlYmkgY29tbWFuZCBmcm9tIHRoZSBjb21tYW5kIGxpbmUgZmlyc3Q6DQpgYGB7cn0NCiQgc3VkbyBhcHQgaW5zdGFsbCBnZGViaS1jb3JlDQpgYGAgIA0KQnJvd3NlIHRvIHRoZSBSc3R1ZGlvIHBhY2thZ2UgcGFnZSBoZXJlLiBDaG9vc2UgeW91ciB2ZXJzaW9uLiAgDQpGb3IgbWUgaXQgd2FzIGBSU3R1ZGlvIDEuMi4xMzM1IC0gVWJ1bnR1IDE4L0RlYmlhbiAxMCAoNjQtYml0KWAgIA0KRG93bmxvYWQgdGhlIHBhY2thZ2UuICANCllvdSBjYW4gaW5zdGFsbCBncmFwaGljYWxseSBhcyB3ZWxsIGFzIGZyb20gY29tbWFuZCBsaW5lIGJlbG93LiBJIHdvdWxkIHByZWZlciB0aGUgY29tbWFuZCBsaW5lIHZlcnNpb24gYnV0IEkgZG9udCB0aGluayBpdCBzaG91bGQgbWF0dGVyIG11Y2guICANCiAgDQpUbyBpbnN0YWxsIGZyb20gY29tbWFuZCBsaW5lIHZlcnNpb24sIGZpcnN0IG5vdGUgdGhlIHZlcnNpb24gc3RyaW5nIG9mIHlvdXIgcGFja2FnZS4gRm9yIHRoaXMgcmlnaHQgY2xpY2sgb24gdGhlIGRvd25sb2FkIGxpbmsgb24gdGhlIHdlYnBhZ2UgYW5kIG9wZW4gaXQgaW4gbmV3IHdpbmRvdyAoanVzdCB0byBjb3B5IHRoZSBVUkwsIHlvdSBkb250IGhhdmUgdG8gZG93bmxvYWQgaXQgYWdhaW4pICANCkZvciBtZSBpdCB3YXMgYGh0dHBzOi8vZG93bmxvYWQxLnJzdHVkaW8ub3JnL2Rlc2t0b3AvYmlvbmljL2FtZDY0L3JzdHVkaW8tMS4yLjEzMzUtYW1kNjQuZGViYA0KZnJvbSB3aGljaCBJIGV4dHJhY3QgbXkgcnN0dWRpbyB2ZXJzaW9uIHN0cmluZyBhczogYHJzdHVkaW8tMS4yLjEzMzUtYW1kNjQuZGViYCAgDQpOb3cgZnJvbSBjb21tYW5kIGxpbmUgdGVybWluYWwgZ28gdG8gdGhlIGZvbGRlciB3aGVyZSBpdCBpcyBkb3dubG9hZGVkDQpgYGB7cn0NCiQgY2QgRG93bmxvYWRzLw0KYGBgICANCmFuZCBydW4gdGhlIGNvbW1hbmQgKHdpdGggeW91ciBhcHByb3ByaWF0ZSBSc3R1ZGlvIHZlcnNpb24pDQpgYGB7cn0NCiQgc3VkbyBnZGViaSByc3R1ZGlvLTEuMi4xMzM1LWFtZDY0LmRlYg0KYGBgDQpOb3cgeW91IGNhbiBvcGVuIHRoZSByc3R1ZGlvIGZyb20gY29tbWFuZCBsaW5lIGl0c2VsZiB1c2luZyB0aGUgZm9sbG93aW5nIGNvbW1hbmQNCmBgYHtyfQ0KJCByc3R1ZGlvDQpgYGANCkluIGZhY3QsIGFzIHdlIHdpbGwgc2VlIGxhdGVyLCBpdCBpcyB2ZXJ5IGhlbHBmdWwgdG8gb3BlbiB0aGUgcnN0dWRpbyB0aHJvdWdoIHRoZSBjb21tYW5kIGxpbmUuIFdoeT8gQmVjYXVzZSB3ZSBhcmUgZ29pbmcgdG8gaW5zdGFsbCBUZW5zb3JmbG93IHRocm91Z2ggY29tbWFuZCBsaW5lIHRlcm1pbmFsIHdoaWNoIGlzIG11Y2ggZWFzaWVyIHRoYW4gcnN0dWRpby4gIA0KV2UgY2FuIHRoZW4gb3BlbiByc3R1ZGlvIHRocm91Z2ggY29tbWFuZCBsaW5lICBzbyB0aGF0IGl0IG9wZW5zIGluIHRoZSByaWdodCBlbnZpcm9ubWVudC4NCg0KIyMjVG8gZGlzYWJsZSBOb3V2ZWF1IGRyaXZlciAod2hpY2ggY3Jhc2hlcyB0aGUgc2NyZWVuKSAgDQogIA0KTm93IHRoaXMgaXMgYSB2ZXJ5IGltcG9ydGFudCBzdGVwIGJlZm9yZSB3ZSBnbyBhaGVhZCB3aXRoIE5WSURJQSBkcml2ZXIgaW5zdGFsbGF0aW9uLiBJZiB5b3Ugc2tpcCB0aGlzIHN0ZXAsIG1vc3QgbGlrZWx5IFVidW50dSBncmFwaGljcyBsb2FkIHNjcmVlbiB3aWxsIGNyYXNoIG9uIG5leHQgYm9vdCB1cCBhbmQgaXQgaXMgYSB0b3VnaCBqb2IgdG8gZml4IGl0IHRoZW4uIEV2ZW4gYmVmb3JlIHJlLWJvb3RpbmcsIHlvdSB3aWxsIGZpbmQgUnN0dWRpbyAob25jZSB5b3UgaW5zdGFsbCBpdCkgY3Jhc2hpbmcgZm9yIHVua25vd24gcmVhc29ucyBhZ2FpbiBhbmQgYWdhaW4gZm9yIG5vIGFwcGFyZW50IHJlYXNvbi4gIA0KICANCldlbGwgdGhlIHJlYXNvbiBpcyB0aGUgaW4gYnVpbHQgTm91dmVhdSBkcml2ZXIsIHdoaWNoIGhhcyB0byBiZSBkaXNhYmxlZCBmaXJzdC4gIA0KICANClRoZSBzdGVwcyB0byBkbyB0aGlzIGlzIHdoYXQgSSBoYXZlIHBpY2tlZCB1cCAoYW5kIG1vZGlmaWVkKSB0aGUgc3RlcHMgZnJvbSBNaWNoYWVsIEJleWVsZXIncyBibG9nIFtoZXJlXShodHRwOi8vd3d3LmFza2Fzd2lzcy5jb20vMjAxOS8wMS9ob3ctdG8taW5zdGFsbC1jdWRhLTktY3Vkbm4tNy11YnVudHUtMTgtMDQuaHRtbCkgIA0KICANCkZpcnN0IGNoZWNrIHRoZSBpbnN0YWxsZWQgTm91dmVhdSBkcml2ZXIgdXNpbmcgdGhlIGNvbW1hbmQgYmVsb3c6ICANCmBgYHtyfQ0KJCBsc21vZCB8IGdyZXAgbm91dmVhdQ0KYGBgICANClRvIGRpc2FibGUgdGhlIGRyaXZlciBmaXJzdCBlbnN1cmUgeW91IGhhdmUgdGhlIEdlZGl0IGVkaXRvci4gSWYgbm90IHlvdSBjYW4gaW5zdGFsbCB0aGUgc2FtZSBlYXNpbHkgZnJvbSB0aGUgVWJ1bnR1IHNvZnR3YXJlIGNlbnRlcidzIHJlcG9zaXRvcnkgaW4gYSBmZXcgIGVhc3kgc3RlcHMuIFRoZSBpY29uIGZvciB0aGUgU29md2F0ZSBjZW50ZXIgaXMgdXN1YWxseSBvbiB0aGUgbGVmdCBoYW5kIHZlcnRpY2FsIHNpZGUgb2YgeW91ciBzY3JlZW4uICANCiAgDQpPbmNlIHlvdSBoYXZlIGluc3RhbGxlZCBHZWRpdCwgcnVuIHRoZSBmb2xsb3dpbmcgZnJvbSB5b3VyIGNvbW1hbmQgbGluZSB0ZXJtaW5hbC4gICANClBsZWFzZSBub3RlLCB5b3UgY2FuIG9wZW4gaXQgc3RhbmRhbG9uZSBhcyB3ZWxsLCBidXQgZm9yIHNvbWUgcmVhc29uIEkgaGFkIHRyb3VibGUgc2F2aW5nIGl0IHdpdGggcm9vdCBwcml2ZWxsZWdlcy4gQmVzdCBpcyB0byBvcGVuIGZyb20gY29tbWFuZCBsaW5lLiAgDQpgYGB7cn0NCiQgc3VkbyBnZWRpdCAvZXRjL21vZHByb2JlLmQvYmxhY2tsaXN0LW5vdXZlYXUuY29uZg0KYGBgDQpUaGVuIGFkZCB0aGUgZm9sbG93aW5nIGNvbW1hbmRzIGluIHRoZSBkb2N1bWVudDogIA0KYGBge3J9DQpibGFja2xpc3Qgbm91dmVhdQ0Kb3B0aW9ucyBub3V2ZWF1IG1vZGVzZXQ9MA0KYGBgDQpOb3cgc2F2ZSAqKihDdHJsICsgUykqKiBhbmQgY2xvc2UuICANCiAgDQpOb3cgeW91IGhhdmUgdG8gcnVuIHRoZSBmb2xsb3dpbmcgY29tbWFuZHMgZnJvbSB0aGUgY29tbWFuZCBsaW5lIHRvIHJlZ2VuZXJhdGUgdGhlIGtlcm5lbCBpbml0cmFtZnM6DQogDQpgYGB7cn0NCiQgc3VkbyB1cGRhdGUtaW5pdHJhbWZzIC11DQpgYGANCldlbGwgSSBhbSBub3QgdmVyeSBzdXJlIHdoYXQgdGhpcyBkb2VzIGV4YWN0bHksIGJ1dCBhZnRlciBydW5uaW5nIHRoZSBjb21tYW5kLCB0aGUgZHJpdmVyIHdpbGwgZ2V0IGRpc2FibGVkIGFzIHRoZSBrZXJuZWwgdGFrZXMgbm90ZSBvZiBpdC4gIA0KICANClRoaXMgc2hvdWxkIGJlIHZlcnkgZXZpZGVudCBhcyBSc3R1ZGlvIHNjcmVlbiB3aWxsIHN0b3AgY3Jhc2hpbmcgYXQgdGhpcyBwb2ludC4gSWYgbm90LCByZWJvb3QgdGhlIHN5c3RlbSBhbmQgeW91IHNob3VsZCBzZWUgdGhpcyBlZmZlY3QuICANCmBgYHtyfQ0KJCByZWJvb3QNCmBgYCAgDQogIA0KIyMjVG8gaW5zdGFsbCBhcHByb3ByaWF0ZSBnY2MgdmVyc2lvbg0KSSBmb2xsb3dlZCBzb21lIHN0ZXBzIGZyb20gdGhlIExpbnV4IGJsb2cgaGVyZS4gIA0KICANCkJlbG93IGlzIGEgZGlyZWN0IHJlcHJvZHVjdGlvbiBvZiB0aGUgY29tbWFuZHMgZnJvbSB0aGUgYmxvZzogIA0KICANClN0YXJ0IGJ5IHVwZGF0aW5nIHRoZSBwYWNrYWdlcyBsaXN0Og0KYGBge3J9DQokIHN1ZG8gYXB0IHVwZGF0ZQ0KYGBgDQpDb3B5ICANCkluc3RhbGwgdGhlIGJ1aWxkLWVzc2VudGlhbCBwYWNrYWdlIGJ5IHR5cGluZzoNCmBgYHtyfQ0KJCBzdWRvIGFwdCBpbnN0YWxsIGJ1aWxkLWVzc2VudGlhbCAgDQogIA0KJCBleHBvcnQgTERfTElCUkFSWV9QQVRIPS91c3IvbG9jYWwvY3VkYS0xMC4xL2xpYjY0XA0KICAgICAgICAgICAgICAgICAgICAgICAgICR7TERfTElCUkFSWV9QQVRIOis6JHtMRF9MSUJSQVJZX1BBVEh9fQ0KYGBgDQogDQpUaGUgY29tbWFuZCB3aWxsIGluc3RhbGwgYSBidW5jaCBvZiBuZXcgcGFja2FnZXMgaW5jbHVkaW5nIGdjYywgZysrIGFuZCBtYWtlLiAgDQogIA0KWW91IG1heSBhbHNvIHdhbnQgdG8gaW5zdGFsbCB0aGUgbWFudWFsIHBhZ2VzIGFib3V0IHVzaW5nIEdOVS9MaW51eCBmb3IgZGV2ZWxvcG1lbnQ6DQpgYGB7cn0NCiQgc3VkbyBhcHQtZ2V0IGluc3RhbGwgbWFucGFnZXMtZGV2DQpgYGANClRvIHZhbGlkYXRlIHRoYXQgdGhlIEdDQyBjb21waWxlciBpcyBzdWNjZXNzZnVsbHkgaW5zdGFsbGVkIHVzZSB0aGUgZ2NjIC0tdmVyc2lvbiBjb21tYW5kIHdoaWNoIHdpbGwgcHJpbnQgdGhlIEdDQyB2ZXJzaW9uOg0KYGBge3J9DQokIGdjYyAtLXZlcnNpb24NCmBgYA0KVGhhdCdzIGl0LiBHQ0MgaXMgbm93IGluc3RhbGxlZCBvbiB5b3VyIHN5c3RlbSBhbmQgeW91IGNhbiBzdGFydCB1c2luZyBpdC4NCg0KIyMjSW5zdGFsbCB0aGUgcmVxdWlyZWQgcHJlLWluc3RhbGxhdGlvbiBwYWNrYWdlcyAgDQogIA0KVGhlbiBJIGFsc28gcmFuIGEgZmV3IGNvbW1hbmRhcyByZWNvbW1lbmRlZCBvbiBNaWNoYWVsIEJleWVsZXJgcyBibG9nIFtoZXJlXShodHRwOi8vd3d3LmFza2Fzd2lzcy5jb20vMjAxOS8wMS9ob3ctdG8taW5zdGFsbC1jdWRhLTktY3Vkbm4tNy11YnVudHUtMTgtMDQuaHRtbCkgIA0KICANCkFjY29yZGluZyB0byB0aGUgTlZJRElBIGRvY3VtZW50YXRpb24sIHRoaXMgc3RlcCBpcyBubyBsb25nZXIgc3RyaWN0bHkgcmVxdWlyZWQsIGJ1dCBpdCBpcyBnb29kIHRvIGhhdmUgdGhlIGZvbGxvd2luZyBwYWNrYWdlcyBhbnl3YXk6DQpgYGB7cn0NCiQgc3VkbyBhcHQgaW5zdGFsbCBnKysgZnJlZWdsdXQzLWRldiBidWlsZC1lc3NlbnRpYWwgbGlieDExLWRldiBsaWJ4bXUtZGV2IFwNCiAgIGxpYnhpLWRldiBsaWJnbHUxLW1lc2EgbGliZ2x1MS1tZXNhLWRldg0KYGBgDQojIyNUbyBpbnN0YWxsIGFwcHJvcHJpYXRlIE5WSURJQSBkcml2ZXIgZm9yIEdQVQ0KVGhlIG5leHQgc3RlcCBpcyB0byBpbnN0YWxsIHRoZSBhcHByb3ByaWF0ZSBOVklESUEgZHJpdmVyLiBUaGlzIGlzIGEgdmVyeSBpbXBvcnRhbnQgYW5kIHRoZSBmaXJzdCBjaGFsbGVuZ2luZyBzdGVwIG9mIHRoZSBpbnN0YWxsYXRpb24uICANCkkgYW0gc2hvd2luZyB0aGUgc3RlcHMgYmVsb3cgZm9yIEdQVSB2ZXJzaW9uIEdUWCAxMDcwLiAgDQpXaXRoIGEgbGl0dGxlIHR3ZWFraW5nIGluIHRoZSBjb21tYW5kcywgeW91IGNhbiBlYXNpbHkgZmluZCB0aGUgYXBwcm9wcmlhdGUgaW5zdGFsbGF0aW9uIGZvciB5b3VyIG1hY2hpbmUgKHllYWggdGhhdCdzIHRoZSB3YXkgSSBmb3VuZCBpdCB0b28pICANCiAgDQpJIHJlZmVycmVkIHNvbWUgc3RlcHMgZnJvbSB0aGlzIHN0YWNrb3ZlcmZsb3cgYW5zd2VyIFtoZXJlXShodHRwczovL2Fza3VidW50dS5jb20vcXVlc3Rpb25zLzExMTI4MTQvaW5zdGFsbC1kcml2ZXItZm9yLWd0eC0xMDcwKSAgICANClRvIGZpcnN0IHJlbW92ZSBhbnkgcHJldmlvdXMgTlZJRElBIGluc3RhbGxhdGlvbnMgd2UgcnVuIHRoZSBmb2xsb3dpbmcgY29tbWFuZCBmcm9tIHRoZSBjb21tYW5kIGxpbmU6DQpgYGB7cn0NCiQgc3VkbyBhcHQtZ2V0IHB1cmdlIG52aWRpYSoNCmBgYCAgDQpUaGVuIHRvIGFkZCB0aGUgYXBwcm9wcmlhdGUgcmVwb3NpdG9yeSB0byB5b3VyIHJlcG8gbGlzdDoNCmBgYHtyfQ0KJCBzdWRvIGFkZC1hcHQtcmVwb3NpdG9yeSBwcGE6Z3JhcGhpY3MtZHJpdmVycw0KYGBgDQpUaGVuIHJ1biBhbiB1cGRhdGUNCmBgYHtyfQ0KJCBzdWRvIGFwdC1nZXQgdXBkYXRlDQpgYGANCk5vdyBjaGVjayB0aGUgZHJpdmVycyBwcmVzZW50IGZvciBkb3dubG9hZCBhbmQgYWxzbyB3aGljaCB2ZXJzaW9uIGlzIHJlY2NvbW1lbmRlZCBmb3IgeW91ciBwYXJ0aWN1bGFyIG1hY2hpbmU6DQpgYGB7cn0NCiQgdWJ1bnR1LWRyaXZlcnMgZGV2aWNlcw0KYGBgDQpGb3Igc29tZSBtYWNoaW5lcyBmb2xsb3dpbmcgbWF5IGJlIHRoZSBvdXRwdXQ6ICANCg0KYGBgDQo9PSAvc3lzL2RldmljZXMvcGNpMDAwMDowMC8wMDAwOjAwOjAxLjAvMDAwMDowMTowMC4wID09ICANCm1vZGFsaWFzIDogcGNpOnYwMDAwMTBERWQwMDAwMUI4MXN2MDAwMDE0NjJzZDAwMDAzMzAyYmMwM3NjMDBpMDAgIA0KdmVuZG9yICAgOiBOVklESUEgQ29ycG9yYXRpb24gIA0KbW9kZWwgICAgOiBHUDEwNCBbR2VGb3JjZSBHVFggMTA3MF0gIA0KZHJpdmVyICAgOiBudmlkaWEtZHJpdmVyLTQxMCAtIHRoaXJkLXBhcnR5IGZyZWUgIA0KZHJpdmVyICAgOiBudmlkaWEtZHJpdmVyLTM5NiAtIHRoaXJkLXBhcnR5IGZyZWUgIA0KZHJpdmVyICAgOiBudmlkaWEtZHJpdmVyLTQxNSAtIHRoaXJkLXBhcnR5IGZyZWUgcmVjb21tZW5kZWQgIA0KZHJpdmVyICAgOiBudmlkaWEtZHJpdmVyLTM5MCAtIHRoaXJkLXBhcnR5IGZyZWUgIA0KZHJpdmVyICAgOiB4c2VydmVyLXhvcmctdmlkZW8tbm91dmVhdSAtIGRpc3RybyBmcmVlIGJ1aWx0aW4gIA0KYGBgDQpOb3cgdGFrZSB0aGUgcmVjY29tbWVuZGVkIG9uZSBhbmQgaW5zdGFsbC4NCg0KYGBge3J9DQokIHN1ZG8gYXB0LWdldCBpbnN0YWxsIG52aWRpYS1kcml2ZXItNDE1DQpgYGANCk5vdyBzZWUgaGVyZSB0aGUgb3V0cHV0IHJlY29tbWVuZHMgdGhlIGRyaXZlciB2ZXJzaW9uIG9mIGA0MTVgLiAgDQpPbiBteSBtYWNoaW5lIGl0IGFjdHVhbGx5IHJlY29tbWVuZGVkIHZlcnNpb24gYC0gNDMwYC4gU28gSSB1c2VkIGEgZGlmZmVyZW50IGNvbW1hbmQgYmVsb3cNCmBgYHtyfQ0KJCBzdWRvIGFwdC1nZXQgaW5zdGFsbCBudmlkaWEtZHJpdmVyLTQzMA0KYGBgDQpTZWUsIHRoZSBwb2ludCBoZXJlIGlzIHVzZSB3aGF0ZXZlciBpcyByZWNvbW1lbmRlZCBvbiB5b3VyIG1hY2hpbmUuTm93IGlmIHlvdSBtYWRlIGl0IHRvIHRoaXMgcG9pbnQgd2l0aG91dCBlcnJvcnMsIGEgc2lnbmlmaWNhbnQgc3RlcCBpcyBhY2hpZXZlZC4gIA0KSXQgaXMgcmVjb21tZW5kZWQgeW91IHJlYm9vdCB5b3VyIG1hY2hpbmUgYXQgdGhpcyBwb2ludC4gIA0KSW4gdGhlIGNvbW1hbmQgdGVybWluYWwganVzdCB0eXBlOg0KYGBge3J9DQokIHJlYm9vdA0KYGBgDQoNCg0KDQoNCg0KDQoNCg0KDQogIA0KDQoNCg0KICANCiAg</div>
 
 
 
